@@ -13,15 +13,15 @@ const Intro: React.FC = () => {
     }, []);
 
     const text = [
-        "Fasciné de pouvoir créer des choses différentes à partir de rien",
-        "Stimulé par le côté technique et réfléchi poussant à la recherche permanente",
-        "Galvanisé par la résolution des défis techniques et la satisfaction qui en découle"
+        "Fasciné de pouvoir créer des choses différentes à partir de rien,",
+        "Stimulé par le côté technique et réfléchi poussant à la recherche permanente,",
+        "Galvanisé par la résolution des défis techniques et la satisfaction qui en découle."
     ];
 
 if (!mounted) return <BeatLoader color="#db2777"/>;
 
     return (
-        <section className="w-11/12 md:w-9/12  mb-12 sm:mb-20 flex justify-end ">
+        <section className="w-full md:w-9/12 px-2 mb-12 sm:mb-20 ">
             <div className="text-end italic text-small-caps">
                 <FadeInText 
                     text={text}

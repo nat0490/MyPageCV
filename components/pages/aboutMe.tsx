@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import monParcours from "@/data/monParcours";
 import { useTheme } from "next-themes";
 import { BeatLoader } from "react-spinners";
-import { Baby, BriefcaseBusiness, GraduationCap, Library, Eye, SkipBack, SkipForward, MapPin } from "lucide-react";
+import { Baby, BriefcaseBusiness, GraduationCap, Library, Eye, SkipBack, SkipForward, MapPin, ChevronsRight, ChevronsLeft } from "lucide-react";
 
 const AboutMe: React.FC = () => {
     const { theme, setTheme } = useTheme();
@@ -124,7 +124,7 @@ const competences = (competences: string[]) => {
             const displayText = isTruncated ? fullText.substring(0, 100) : fullText; 
 
             allParcours.push(
-                <div ref={elementWidthRef} key={p.id} className="pt-2 mb-3 w-full sm:w-1/2 md:w-1/3 shrink-0 lg:shrink  ">         
+                <div ref={elementWidthRef} key={p.id} className={`pt-2 mb-3 ${p.description === "" ? "w-1/3":"w-full"} sm:w-1/2 md:w-1/3 shrink-0 lg:shrink`}>         
                     {p.id === 1 &&
                         <div className={`h-0.5 mb-2 w-1/2 flex justify-end ${theme === 'light' ? 'bg-pink-300/70' : 'bg-pink-600/70'}`}> 
                             <div className={`size-3 rounded-full -mt-1 ${theme === 'light' ? 'bg-pink-300' : 'bg-pink-600'}`}></div> 
@@ -181,7 +181,17 @@ const competences = (competences: string[]) => {
                             {softSkills(p.softSkills)}
                             </div>
                             <div className="border-t mx-14 border-pink-600/40 mt-1"></div>
-                        </div>}  
+                        </div>}
+
+                        {/* <div className={`${(i!==0 || i !== monParcours.length) && "flex justify-between"} `}>
+                           { i !== 0 && <span className="flex justify-start ml-2">
+                                <ChevronsLeft />                 
+                            </span>} 
+                            <span className="w-full flex justify-end mr-2">
+                                <ChevronsRight />                 
+                            </span>   
+                        </div> */}
+                        
                     </div>
                 </div>            
         )}
@@ -192,7 +202,8 @@ const competences = (competences: string[]) => {
 
     return (
         <section className="w-full ">
-            <h1 className="text-pink-600 text-small-caps text-right text-5xl mb-4 mr-4 sm:mr-32 "> Mon parcours </h1>        
+            <h1 className="text-pink-600 text-small-caps text-right text-5xl mb-4 mr-4 sm:mr-32 "> Mon parcours </h1>  
+             
             {/* {windowWidth < 1024 &&
             <div className="flex justify-center space-x-4">
                 <div className="hover:scale-150 cursor-pointer p-1 mx-1 " onClick={handleSkipBack}>
@@ -204,7 +215,10 @@ const competences = (competences: string[]) => {
             </div>}             */}
             <div className={`w-full flex flex-nowrap overflow-x-scroll no-scrollbar`}>        
                 {parcours()}
-            </div>
+            </div> 
+            {/* <span className="w-full flex justify-end pr-6 -mt-2">
+                <ChevronsRight />                 
+            </span>    */}
         </section>
     );
 };

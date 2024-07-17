@@ -60,7 +60,7 @@ if (!mounted) return (<div className="w-screen h-screen flex justify-center item
         <Baniere />
       </div>
 
-      <div ref={introRef} className={`w-full transition-opacity duration-2000 ${introVisible ? 'opacity-100' : 'opacity-0'}`}>
+      <div ref={introRef} className={`w-full flex justify-end  transition-opacity duration-2000 ${introVisible ? 'opacity-100' : 'opacity-0'}`}>
         <Intro/>
       </div>
   
