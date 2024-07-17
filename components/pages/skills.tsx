@@ -16,7 +16,7 @@ const Skills: React.FC = () => {
         {src : require("@/assets/skills/iconReact.png"), name : "React & React Native"},
         {src : require("@/assets/skills/iconTailwind.png"), name : "Tailwind CSS"},
         {src : theme === "light" ? require("@/assets/skills/iconGit1.png") : require("@/assets/skills/iconGit2.png"), name : "Git"},
-        // {src : theme === "light" ? require("@/assets/skills/iconGithub1.png") : require("@/assets/skills/iconGithub2.png"), name : "GitHub"},
+       
         {src : require("@/assets/skills/iconNode.png"), name : "Node JS"},
         {src : require("@/assets/skills/iconExpo.png"), name : "Expo"},
         {src : require("@/assets/skills/iconExpress.png"), name : "Express JS"},
