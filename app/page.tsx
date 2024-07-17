@@ -32,7 +32,8 @@ const  Home: React.FC = () => {
   }, []);
   
 //LARGUEUR ECRAN POUR STYLE
-  const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth); 
+const [windowWidth, setWindowWidth] = useState<number>(typeof window !== 'undefined' ? window.innerWidth : 0);
+  // const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth); 
   useEffect(() => {
     const handleResize = () => {
         setWindowWidth(window.innerWidth);

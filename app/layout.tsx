@@ -24,8 +24,9 @@ export default function RootLayout({ children}: Readonly<{children: React.ReactN
         >
           
           <head >
-          <title>Nathalie Sartor</title>
-          <meta name="description" content="A propos de moi" />
+            <title>Nathalie Sartor</title>
+            <meta name="description" content="A propos de moi, mon parcours, mes réalisations" />
+            <meta name="author" content="Nathalie Sartor" />
           </head>
           <body className={inter.className }>
             <ThemeProvider>{children}</ThemeProvider>
