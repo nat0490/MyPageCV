@@ -156,7 +156,7 @@ useEffect(() => {
               </a>         
             </div>
 
-            <div>
+            <div >
             <ToggleTheme /> 
             </div>
             

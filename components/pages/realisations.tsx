@@ -257,7 +257,7 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
         <section className="w-full">
             <h1 className="text-pink-600 text-small-caps text-center text-5xl mb-6 "> Réalisations </h1>
             {/* <div className="mb-4 w-full"> */}
-                <div className="w-full scroll-smooth flex flex-nowrap overflow-x-auto md:justify-center space-x-3">
+                <div className={`w-full scroll-smooth flex flex-nowrap overflow-x-auto md:justify-center space-x-3 scrollbar  ${theme ==="light" ? "scrollbar-thumb-pink-200  scrollbar-track-pink-100/50  " : "scrollbar-thumb-pink-600/50  scrollbar-track-pink-950/50"}`}>
 
                     {realisations()}
                     

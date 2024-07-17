@@ -202,7 +202,7 @@ const competences = (competences: string[]) => {
                     <SkipForward />
                 </div>
             </div>}             */}
-            <div className={`w-full flex flex-nowrap overflow-x-hidden`}>        
+            <div className={`w-full flex flex-nowrap overflow-x-scroll no-scrollbar`}>        
                 {parcours()}
             </div>
         </section>

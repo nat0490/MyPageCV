@@ -86,7 +86,7 @@ if (!mounted) return (<div className="w-screen h-screen flex justify-center item
         <Player
             autoplay
             loop
-            src={require("@/assets/AnimationBubbleMvm.json")}
+            src={require("@/assets/AnimationAbstract.json")}
             style={stylePlayer}                  
           ></Player>
       </div>

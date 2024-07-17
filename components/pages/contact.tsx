@@ -168,7 +168,7 @@ const stylePlayer = windowWidth > 768
                                     />
                             ))}
                             </div>
-                            <div className="w-4/5 h-2/4 flex w-full justify-center "> 
+                            <div className="h-2/4 flex w-full justify-center "> 
                                 {textFields.map((field) => (
                                     <textarea 
                                         key={field.name}
