@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState} from "react";
 import myRealisations from "@/data/realisations";
 import Image from "next/image";
-import { BeatLoader} from 'react-spinners';
+import { BeatLoader, MoonLoader} from 'react-spinners';
 import { Link, MousePointerClick,Cog } from 'lucide-react';
 import { useTheme } from "next-themes";
 
@@ -172,6 +172,7 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
         for (let i = 0; i < myRealisations.length; i++) {
             const realisation = myRealisations[i];
             const mainImage = realisation.image[currentIndex[i]];
+            // console.log(mainImage);
             const isTruncated = truncatedTexts[i];
             const fullText = realisation.description;
             const displayText = isTruncated ? fullText.substring(0, 150) : fullText; 
@@ -187,14 +188,15 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
                     <div className="flex flex-col  h-72  lg:h-80 xl:h-96 " >
                         {/* <div className="flex flex-col h-72 md:h-48 lg:h-64 xl:h-56 2xl:h-72"> */}
                             <div id="GrandeImage" className="relative h-full w-full">
-                                <Image
+                                {mainImage? <Image
                                     src={mainImage}
                                     alt={`Image principale ${i}`}
                                     fill
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     className="absolute inset-0 object-contain w-full h-full "
                                     priority
-                                />
+                                /> :
+                                <MoonLoader color="#db2777"/>}
                             </div>
                         {/* </div> */}
                         <div 
