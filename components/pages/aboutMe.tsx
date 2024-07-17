@@ -124,7 +124,7 @@ const competences = (competences: string[]) => {
             const displayText = isTruncated ? fullText.substring(0, 100) : fullText; 
 
             allParcours.push(
-                <div ref={elementWidthRef} key={p.id} className="mb-4 pt-2 w-full sm:w-1/2 md:w-1/3 shrink-0 lg:shrink ">         
+                <div ref={elementWidthRef} key={p.id} className="pt-2 mb-3 w-full sm:w-1/2 md:w-1/3 shrink-0 lg:shrink  ">         
                     {p.id === 1 &&
                         <div className={`h-0.5 mb-2 w-1/2 flex justify-end ${theme === 'light' ? 'bg-pink-300/70' : 'bg-pink-600/70'}`}> 
                             <div className={`size-3 rounded-full -mt-1 ${theme === 'light' ? 'bg-pink-300' : 'bg-pink-600'}`}></div> 
@@ -180,7 +180,7 @@ const competences = (competences: string[]) => {
                             <div className="flex flex-wrap justify-center space-x-2 ">
                             {softSkills(p.softSkills)}
                             </div>
-                            <div className="border-t mx-14 border-pink-600/40 mt-1 mb-4"></div>
+                            <div className="border-t mx-14 border-pink-600/40 mt-1"></div>
                         </div>}  
                     </div>
                 </div>            

@@ -161,9 +161,9 @@ const Skills: React.FC = () => {
     return (
         <section className="w-full">
             <h1 className="text-pink-600 text-small-caps text-5xl mb-6 ml-10 sm:ml-40"> Skills </h1>
-            <div className=" h-98 mb-4 flex items-center overflow-hidden">
+            <div className=" h-98 mb-4 flex items-center ">
                 <div className="flex flex-col w-full">
-                    <div id="scrollSkills" ref={scrollContainerRef} className="flex items-center overflow-hidden">
+                    <div id="scrollSkills" ref={scrollContainerRef} className="flex items-center overflow-x-scroll no-scrollbar">
                         {skills()}
                     </div>
                     <div className="flex justify-center w-full"> 
