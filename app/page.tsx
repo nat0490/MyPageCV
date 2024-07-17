@@ -68,7 +68,7 @@ if (!mounted) return (<div className="w-screen h-screen flex justify-center item
         <AboutMe />
       </div>
 
-        <div ref={player1 }className={`w-full flex justify-start pl-24 lg:pl-48 -mt-10 transition-opacity duration-2000 ${player1Visible ? 'opacity-100' : 'opacity-0'}`}>
+        <div ref={player1 }className={`w-full flex justify-start pl-24 lg:pl-48  transition-opacity duration-2000 ${player1Visible ? 'opacity-100' : 'opacity-0'}`}>
           <Player
               autoplay
               loop

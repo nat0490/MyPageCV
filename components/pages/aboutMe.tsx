@@ -193,7 +193,7 @@ const competences = (competences: string[]) => {
     return (
         <section className="w-full ">
             <h1 className="text-pink-600 text-small-caps text-right text-5xl mb-4 mr-4 sm:mr-32 "> Mon parcours </h1>        
-            {windowWidth < 1024 &&
+            {/* {windowWidth < 1024 &&
             <div className="flex justify-center space-x-4">
                 <div className="hover:scale-150 cursor-pointer p-1 mx-1 " onClick={handleSkipBack}>
                     <SkipBack />
@@ -201,8 +201,8 @@ const competences = (competences: string[]) => {
                 <div className="hover:scale-150 cursor-pointer p-1 mx-1 " onClick={handleSkipForward}>
                     <SkipForward />
                 </div>
-            </div>}            
-            <div ref={scrollContainerRef} className={`scroll-smooth  w-full flex flex-nowrap overflow-x-hidden `}>        
+            </div>}             */}
+            <div className={`w-full flex flex-nowrap overflow-x-hidden`}>        
                 {parcours()}
             </div>
         </section>

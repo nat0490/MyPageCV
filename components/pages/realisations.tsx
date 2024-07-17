@@ -257,7 +257,7 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
         <section className="w-full">
             <h1 className="text-pink-600 text-small-caps text-center text-5xl mb-6 "> Réalisations </h1>
             {/* <div className="mb-4 w-full"> */}
-                <div className="w-full scroll-smooth flex flex-nowrap overflow-x-auto md:justify-center space-x-3 border border-red-500">
+                <div className="w-full scroll-smooth flex flex-nowrap overflow-x-auto md:justify-center space-x-3">
 
                     {realisations()}
                     
