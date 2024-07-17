@@ -178,7 +178,7 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
             const displayText = isTruncated ? fullText.substring(0, 150) : fullText; 
 
             allRealisations.push(
-                <div key={`${realisation.id}`} className={` flex flex-col w-full md:shrink md:w-1/2 xl:w-1/3`}>
+                <div key={`${realisation.id}`} className={`flex flex-col w-full shrink-0 md:w-1/2 lg:w-1/3 `}>
                     {/* ${allRealisations.length >= 3 && "xl:w-1/3"}  */}
                     <div className="rounded-xl h-full bg-pink-700/5 p-2">
                     <h2 className="text-small-caps text-center text-xl m-2 bg-pink-600/10 rounded-lg">
@@ -256,13 +256,13 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
     return (
         <section className="w-full">
             <h1 className="text-pink-600 text-small-caps text-center text-5xl mb-6 "> Réalisations </h1>
-            <div className="mb-4 w-full">
-                <div className="w-full flex flex-nowrap overflow-x-auto justify-center space-x-3">
+            {/* <div className="mb-4 w-full"> */}
+                <div className="w-full scroll-smooth flex flex-nowrap overflow-x-auto md:justify-center space-x-3 border border-red-500">
 
                     {realisations()}
                     
                 </div>            
-            </div>
+            {/* </div> */}
         </section>
     );
 };

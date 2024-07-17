@@ -17,6 +17,7 @@ const  Home: React.FC = () => {
 
 //GESTION DE L'EFFET D'APPARITION DES ELEMENTS
   const [baniereRef, baniereVisible] = useIntersectionObserver({ threshold: 0.1 });
+  const [introRef, introVisible] = useIntersectionObserver({ threshold: 0.1 });
   const [aboutMeRef, aboutMeVisible] = useIntersectionObserver({ threshold: 0.1 });
   const [realisationsRef, realisationsVisible] = useIntersectionObserver({ threshold: 0.1 });
   const [skillsRef, skillsVisible] = useIntersectionObserver({ threshold: 0.2 });
@@ -24,7 +25,7 @@ const  Home: React.FC = () => {
   const [player1, player1Visible] = useIntersectionObserver({ threshold: 0.1 });
   const [player2, player2Visible] = useIntersectionObserver({ threshold: 0.1 });
   const [player3, player3Visible] = useIntersectionObserver({ threshold: 0.1 });
-  const [player4, player4Visible] = useIntersectionObserver({ threshold: 0.1 });
+
 
 //MONTAGE COMPOSANT
   useEffect(() => {
@@ -59,7 +60,9 @@ if (!mounted) return (<div className="w-screen h-screen flex justify-center item
         <Baniere />
       </div>
 
-      <Intro/>
+      <div ref={introRef} className={`w-full transition-opacity duration-2000 ${introVisible ? 'opacity-100' : 'opacity-0'}`}>
+        <Intro/>
+      </div>
   
       <div ref={aboutMeRef} className={`w-full transition-opacity duration-2000 ${aboutMeVisible ? 'opacity-100' : 'opacity-0'}`}>
         <AboutMe />
@@ -79,7 +82,7 @@ if (!mounted) return (<div className="w-screen h-screen flex justify-center item
         <Realisations />
       </div>
 
-      <div ref={player2} className={`w-full flex justify-end pr-24 lg:pr-48 -mb-10 transition-opacity duration-2000 ${player2Visible ? 'opacity-100' : 'opacity-0'}`}>
+      <div ref={player2} className={`w-full flex justify-end pr-8 sm:pr-24 lg:pr-48 -mb-10 transition-opacity duration-2000 ${player2Visible ? 'opacity-100' : 'opacity-0'}`}>
         <Player
             autoplay
             loop
@@ -92,7 +95,7 @@ if (!mounted) return (<div className="w-screen h-screen flex justify-center item
         <Skills />
       </div>
 
-      <div ref={player3} className={`w-full flex justify-center -mb-8 pr-48 lg:pr-96 transition-opacity duration-2000 ${player3Visible ? 'opacity-100' : 'opacity-0'}`}>
+      <div ref={player3} className={`w-11/12 flex md:justify-center -mb-8 pr-28 md:pr-96 transition-opacity duration-2000 ${player3Visible ? 'opacity-100' : 'opacity-0'}`}>
           <Player
               autoplay
               loop

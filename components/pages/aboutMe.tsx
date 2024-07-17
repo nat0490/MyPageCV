@@ -124,7 +124,7 @@ const competences = (competences: string[]) => {
             const displayText = isTruncated ? fullText.substring(0, 100) : fullText; 
 
             allParcours.push(
-                <div ref={elementWidthRef} key={p.id} className="mb-4 pt-2 w-1/2 sm:w-1/3 md:w-1/4 shrink-0 lg:shrink ">         
+                <div ref={elementWidthRef} key={p.id} className="mb-4 pt-2 w-full sm:w-1/2 md:w-1/3 shrink-0 lg:shrink ">         
                     {p.id === 1 &&
                         <div className={`h-0.5 mb-2 w-1/2 flex justify-end ${theme === 'light' ? 'bg-pink-300/70' : 'bg-pink-600/70'}`}> 
                             <div className={`size-3 rounded-full -mt-1 ${theme === 'light' ? 'bg-pink-300' : 'bg-pink-600'}`}></div> 
@@ -192,7 +192,7 @@ const competences = (competences: string[]) => {
 
     return (
         <section className="w-full ">
-            <h1 className="text-pink-600 text-small-caps text-right text-5xl mb-4 mr-32 "> Mon parcours </h1>        
+            <h1 className="text-pink-600 text-small-caps text-right text-5xl mb-4 mr-4 sm:mr-32 "> Mon parcours </h1>        
             {windowWidth < 1024 &&
             <div className="flex justify-center space-x-4">
                 <div className="hover:scale-150 cursor-pointer p-1 mx-1 " onClick={handleSkipBack}>

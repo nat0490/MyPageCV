@@ -36,6 +36,26 @@ const Contact: React.FC = () => {
         setMounted(true);
     }, []);
 
+//LARGUEUR ECRAN POUR STYLE
+const [windowWidth, setWindowWidth] = useState<number>(typeof window !== 'undefined' ? window.innerWidth : 0);
+  // const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth); 
+  useEffect(() => {
+    const handleResize = () => {
+        setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+        window.removeEventListener('resize', handleResize);
+    };
+}, []);
+
+
+const stylePlayer = windowWidth > 768
+        ? { height: '150px', width: '150px' }
+        : { height: '100px', width: '100px' };
+
+
+
     const textFields = fields.filter(field => field.name === "message");
     const otherFields = fields.filter(field => field.name !== "message");
     const form = useRef<HTMLFormElement>(null);
@@ -99,20 +119,21 @@ const Contact: React.FC = () => {
     if (!mounted) return <BeatLoader color="#db2777"/>;
 
     return (
-        <section className="w-11/12 mb-32">
-            <h1 className="text-pink-600 text-small-caps text-right text-5xl mb-6 mr-40 ">Contact</h1>
-            <div className=" h-72 mb-10  rounded-3xl contactBox ">
-                <div className="pb-32"> 
-                    <form ref={form} onSubmit={handleSubmit} className="flex justify-center w-full">
-                        <div className="flex flex-col items-center justify-center w-1/5   ">
+        <section className="w-full mb-28">
+            <h1 className="text-pink-600 text-small-caps text-right text-5xl mb-6 mr-8 sm:mr-40">Contact</h1>
+            <div className=" rounded-3xl contactBox mx-2 p-2">
+                {/* <div className="">  */}
+                    <form ref={form} onSubmit={handleSubmit} className="flex justify-center items-between w-full">
+                        <div className="flex flex-col items-center justify-center w-2/5">
                             <Player
                                 autoplay
                                 loop
                                 src={require("@/assets/AnimationChat2.json")}
-                                style={{ height: '7rem', width: '7rem', marginBottom: '1rem' }}
+                                // style={{ height: '7rem', width: '7rem', marginBottom: '1rem' }}
+                                style={stylePlayer}
                                 >
                             </Player>
-                            <div className="flex flex-col items-center mt-5">
+                            <div className="flex flex-col items-center sm:mt-5">
                                 <button 
                                     type="submit" 
                                     className="border-2 border-pink-600 hover:bg-pink-600/40 rounded-3xl p-2 sm:w-2/3"
@@ -134,8 +155,8 @@ const Contact: React.FC = () => {
                             </div>
                         </div>
                     
-                        <div className="4/5 md:w-4/6 flex flex-col items-end md:items-center justify-center ">
-                            <div className="flex flex-col lg:flex-row items-between  justify-center lg:justify-start w-4/5 md:w-2/3 " >
+                        <div className="w-3/5 md:w-4/6 flex flex-col items-center justify-center">
+                            <div className="flex flex-col lg:flex-row items-between  justify-center lg:justify-start w-full md:w-2/3 " >
                             {otherFields.map((field) => (
                                 <input
                                     key={field.name}
@@ -147,7 +168,7 @@ const Contact: React.FC = () => {
                                     />
                             ))}
                             </div>
-                            <div className="w-4/5 h-2/4 flex  justify-center "> 
+                            <div className="w-4/5 h-2/4 flex w-full justify-center "> 
                                 {textFields.map((field) => (
                                     <textarea 
                                         key={field.name}
@@ -173,7 +194,7 @@ const Contact: React.FC = () => {
                                 </div> }
                         </div>
                     </form>
-                </div>
+                {/* </div> */}
             </div>
         </section>
     );
