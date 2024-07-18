@@ -37,7 +37,7 @@ const monParcours: Item[] = [
 
     {
         id: 2,
-        nom: "Universitée",
+        nom: "Université",
         postes:["Economie gestion"],
         date: 
             {debut: "2007",
@@ -48,7 +48,7 @@ const monParcours: Item[] = [
         description: "",
         softSkills:[""],
         competences:[""],
-        lieu:"Universitée Jean Moulin Lyon 3",
+        lieu:"Université Jean Moulin Lyon 3",
         image: "string",
     },
     {

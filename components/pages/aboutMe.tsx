@@ -124,7 +124,7 @@ const competences = (competences: string[]) => {
             const displayText = isTruncated ? fullText.substring(0, 100) : fullText; 
 
             allParcours.push(
-                <div ref={elementWidthRef} key={p.id} className={`pt-2 mb-3 ${p.description === "" ? "w-1/3":"w-full"} sm:w-1/2 md:w-1/3 shrink-0 lg:shrink`}>         
+                <div ref={elementWidthRef} key={p.id} className={`pt-2 mb-3 ${p.description === "" ? "w-1/2":"w-full"} sm:w-1/2 md:w-1/3 shrink-0 lg:shrink`}>         
                     {p.id === 1 &&
                         <div className={`h-0.5 mb-2 w-1/2 flex justify-end ${theme === 'light' ? 'bg-pink-300/70' : 'bg-pink-600/70'}`}> 
                             <div className={`size-3 rounded-full -mt-1 ${theme === 'light' ? 'bg-pink-300' : 'bg-pink-600'}`}></div> 
@@ -140,32 +140,39 @@ const competences = (competences: string[]) => {
                         <div className={`h-0.5 mb-2 flex justify-center ${theme === 'light' ? 'bg-pink-300/70' : 'bg-pink-600/70'}`}> 
                             <div className={`size-3 rounded-full -mt-1 ${theme === 'light' ? 'bg-pink-300' : 'bg-pink-600'}`}></div> 
                         </div> }
-                    <div  className=" text-center h-full p-1 mx-2">
+                    <div  className=" text-center h-full p-1 mx-2" title="Période">
                         <div className="w-full whitespace-nowrap italic text-sm">
                             {p.date.debut === p.date.fin ? p.date.debut : `${p.date.debut} - ${p.date.fin}`}
                         </div>
                         <div id="type"className="flex justify-center m-1.5 shrink-0">
-                            {p.type === "naissance" && <Baby />}
-                            {p.type === "diplome" && <GraduationCap />}
-                            {p.type === "etude" && <Library />}
-                            {p.type === "travail" && <BriefcaseBusiness />}
-                            {p.type === "look" && <Eye />}                        
+                            {p.type === "diplome" && <div title="Diplôme"><GraduationCap /></div>}
+                            {p.type === "etude" && <div title="Etude"><Library /></div>}
+                            {p.type === "travail" && <div title="Travail"><BriefcaseBusiness  /></div>}
+                            {p.type === "look" && <div title="Observation"><Eye /></div>}                        
                         </div>
-                        <h2 className="">{p.nom}</h2>
-                        <div id="postes" className="mb-2 flex flex-wrap items-center justify-center space-x-2">
+                        <h2 >{p.nom}</h2>
+                        <div id="postes" className="mb-2 flex flex-wrap items-center justify-center space-x-2" title="Postes occupé">
                             {postes(p.postes)}
                         </div>                    
-                        <div id="lieu"className="text-small-caps mb-2 flex justify-center">
+                        <div id="lieu"className="text-small-caps mb-2 flex justify-center" title="Lieu">
                             <MapPin className="p-1 shrink-0"/>
                             {p.lieu}
                         </div>              
                         <div 
                             id="descriptionContainer"
+                            title="Description"
                             onClick={() => toggleDescription(i)}
                             className={`group text-center ${fullText.length > 100 ? (theme === 'dark' ? "hover:bg-pink-100/5 cursor-pointer" : "hover:bg-pink-950/5 cursor-pointer" ) : ""} rounded-lg py-1.5 my-0.5 `}
                         >
                             <p id="description" className="text-center ">
-                                {displayText}{isTruncated && fullText.length > 100 && < span className="group-hover:font-bold group-hover:animate-ping ">... </span>  }
+                                {displayText}
+                                {/* {isTruncated && fullText.length > 100 && <> < span className="group-hover:font-bold group-hover:animate-ping "> ... </span> <span className="text-sm text-gray-500">(cliquer pour lire la suite)</span> </> } */}
+                                {isTruncated && fullText.length > 100 && (
+                                    <span className="cursor-pointer">
+                                        <span className="group-hover:font-bold group-hover:text-pink-500">...</span>
+                                        <span className="inline-block right-0 -bottom-1 text-sm text-gray-500 group-hover:text-pink-500">(cliquer pour lire la suite)</span>
+                                    </span>
+                                )}
                                 {!isTruncated &&                            
                                     p.competences[0] !== "" && 
                                         <div className="my-2">
@@ -177,7 +184,7 @@ const competences = (competences: string[]) => {
                         {p.softSkills[0] !== ""&& <div>
                             <div className="border-t mx-14 border-pink-600/40 mb-1">
                             </div>
-                            <div className="flex flex-wrap justify-center space-x-2 ">
+                            <div className="flex flex-wrap justify-center space-x-2 " title="Soft Skills">
                             {softSkills(p.softSkills)}
                             </div>
                             <div className="border-t mx-14 border-pink-600/40 mt-1"></div>

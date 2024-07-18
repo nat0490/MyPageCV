@@ -142,6 +142,7 @@ useEffect(() => {
                 className="hover:cursor-pointer hover:bg-pink-600/40 animate-bounce bg-pink-600/5 rounded-full p-2 mr-1"
                 target="_blank" 
                 rel="noopener noreferrer"
+                title="lien Github"
               > { theme === "light" ?  <Github color="black" className="mt-1.5 ml-1"/> : <Github color="white" className="mt-1.5 ml-1"/> }
               </a>   
 
@@ -151,6 +152,7 @@ useEffect(() => {
                   style={{ animationDelay: "0.5s" }}
                   target="_blank" 
                   rel="noopener noreferrer"
+                  title="lien Linkedin"
               > { theme === "light" ?  <Linkedin color="black" className="mt-1.5 ml-1"/> : <Linkedin color="white" className="mt-1.5 ml-1"/> }
                         
               </a>         
@@ -161,7 +163,7 @@ useEffect(() => {
             </div>
             
 
-            <div className="md:mr-52 md:-mt-20 flex justify-end md:justify-start ">
+            <div className="md:mr-52 md:-mt-20 flex justify-end md:justify-start " title="A little Smile :)">
               <Player
                 autoplay
                 loop       

@@ -16,7 +16,7 @@ const myRealisations: Item[] = [
     {
         id: 1,
         name: "Flowst",
-        description: "Réseau permettant la publication de posts avec photos. Possibilité de changer de theme, faire des recherchers pas # et liker les posts/commentaires. Notifications également présentes.",
+        description: "Application Web permettant la publication de posts avec photos. Possibilité de changer de thème, faire des recherches par # et liker les posts/commentaires. Notifications également présentes.",
         image: [
             "https://res.cloudinary.com/dawkemcl5/image/upload/v1720795827/Mes%20r%C3%A9alisations/CapturePC1_dvoeav.png",
             "https://res.cloudinary.com/dawkemcl5/image/upload/v1720795828/Mes%20r%C3%A9alisations/CapturePC2_gnjdvx.png",
@@ -44,7 +44,7 @@ const myRealisations: Item[] = [
     {
         id: 2,
         name: "Chef's Liberation",
-        description: "App Mobile permettant de voir les chef à proximitré de chez soi ou de les choisirs via leur plat. Une fois un plat choisis, on viens choisir la date de la prestation (quand le chef viendra cuisiner chez soi). On peux venir modifier ces information utilisateur via son profil. Egalement la possibilité de passer chef et de pouvoir proposer ces plats",
+        description: "Application Mobile permettant de voir les chefs à proximitré de chez soi ou de les choisir via leur plat. Une fois un plat choisi, on vient choisir la date de la prestation (quand le chef viendra cuisiner chez soi). On peut venir modifier ses information utilisateur via son profil. Egalement la possibilité de passer chef et de pouvoir proposer ses plats",
         image: [
             "https://res.cloudinary.com/dawkemcl5/image/upload/v1720797186/Mes%20r%C3%A9alisations/Acceuil_pour_connexion_nstmqm.jpg",
             "https://res.cloudinary.com/dawkemcl5/image/upload/v1720797187/Mes%20r%C3%A9alisations/page_SignIn_pp3lip.jpg",

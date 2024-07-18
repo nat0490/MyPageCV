@@ -5,14 +5,43 @@ import Image from "next/image";
 import { BeatLoader, MoonLoader} from 'react-spinners';
 import { Link, MousePointerClick,Cog } from 'lucide-react';
 import { useTheme } from "next-themes";
+import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 
-const Realisations: React.FC = () => {
+const Realisations: React.FC<({ realisationsVisible: boolean })> = ({ realisationsVisible }) => {
     const { theme, setTheme } = useTheme();
 
     const [mounted, setMounted] = useState<boolean>(false);
     const [currentIndex, setCurrentIndex] = useState<number[]>([]); 
     const intervalIdRef = useRef<NodeJS.Timeout | null>(null); 
 
+
+
+//REALISATIONS VISIBLE A L'ECRAN
+    const [visibleRealisations, setVisibleRealisations] = useState<number[]>([]); // Définir le type de l'état comme un tableau de nombres
+    const refs = useRef<React.RefObject<HTMLDivElement>[]>(myRealisations.map(() => React.createRef<HTMLDivElement>()));
+
+    useEffect(() => {
+        if(realisationsVisible) {
+            const currentRefs = refs.current;
+            const observers = currentRefs.map((ref, index) => {
+                const observer = new IntersectionObserver(([entry]) => {
+                    if (entry.isIntersecting) {
+                        setVisibleRealisations((prev) => [...prev, index]);
+                    } else {
+                        setVisibleRealisations((prev) => prev.filter((i) => i !== index));
+                    }
+                }, { threshold: 0.5 });
+        
+                if (ref.current) {
+                    observer.observe(ref.current);
+                }        
+                return observer;
+            });
+            return () => {
+                observers.forEach(observer => observer.disconnect());
+            };
+        }        
+    }, [realisationsVisible]);   
 
 //MONTAGE COMPOSANT
     useEffect(() => {
@@ -30,35 +59,6 @@ const Realisations: React.FC = () => {
             }
         };
     }, [mounted]);
-
-//PREMIER ESSAI => DEFILEMENT D'IMAGES
-    // const scrollRef = useRef<HTMLDivElement>(null);
-
-    // useEffect(() => {
-    //     if (!mounted) return;
-    //     const scrollContainer = scrollRef.current;
-        
-    //     if(!scrollContainer) return;
-
-    //     console.log(scrollContainer);
-    //     console.log(scrollRef);
-
-    //     let scrollAmount = 0;
-    //     const scrollStep = 100; // vitesse de défilement en pixels       
-
-
-    //     const scrollInterval = setInterval(() => {
-    //     if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
-    //         scrollAmount = 0; // reset to the start
-    //     } else {
-    //         scrollAmount += scrollStep;
-    //         scrollContainer.scrollLeft = scrollAmount;
-    //     }
-    //     }, 100); // roughly 60 frames per second
-
-    //     return () => clearInterval(scrollInterval);
-    // }, [mounted, scrollRef]);
-
   
 //LIENS VIDEOS
     const videos = (video: string[]) => {
@@ -127,7 +127,6 @@ const Realisations: React.FC = () => {
     };
 
 //IMAGES
-
 const handleImage = (indexRealisation: number, indexImage: number) => {
     setCurrentIndex(prevIndex => {
         const nextIndex = [...prevIndex];
@@ -145,9 +144,6 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
                     <Image                    
                         src={img}
                         alt={`Image ${i}`}
-                        // layout="responsive"
-                        // width={500} 
-                        // height={500} 
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="object-cover cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-150"
@@ -178,7 +174,7 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
             const displayText = isTruncated ? fullText.substring(0, 150) : fullText; 
 
             allRealisations.push(
-                <div key={`${realisation.id}`} className={`flex flex-col w-full shrink-0 md:w-1/2 lg:w-1/3 `}>
+                <div key={`${realisation.id}`} ref={refs.current[i]} className={`flex flex-col w-full shrink-0 md:w-1/2 lg:w-1/3 `}>
                     {/* ${allRealisations.length >= 3 && "xl:w-1/3"}  */}
                     <div className="rounded-xl h-full bg-pink-700/5 p-2">
                     <h2 className="text-small-caps text-center text-xl m-2 bg-pink-600/10 rounded-lg">
@@ -201,20 +197,20 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
                         {/* </div> */}
                         <div 
                             id="images" 
-                            // ref={scrollRef} 
-                            // className="flex flex-nowrap h-72 md:h-48 lg:h-64 xl:h-56 2xl:h-72 overflow-x-auto  "
-                            className="flex flex-nowrap justify-center h-1/5 space-x-0.5 mt-0.5"                              
+                            className="flex flex-nowrap justify-center h-1/5 space-x-0.5 mt-0.5" 
+                            title="Images"                             
                             >
                             {allImages(realisation.image, i)}                            
                         </div>                         
                     </div> 
 
-                    <div id="videos" className="flex justify-around my-2">
+                    <div id="videos" className="flex justify-around my-2" title="Vidéos">
                         {videos(realisation.video)} 
                     </div> 
 
                     <div 
                         id="descriptionContainer"
+                        title="Description"
                         onClick={() => toggleDescription(i)}
                         className={`group cursor-pointer text-center ${theme === 'dark' ? "hover:bg-white/5" : "hover:bg-black/5" } rounded-lg py-1.5 my-0.5`}
                     >
@@ -223,7 +219,7 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
                             
                         </p>
                     </div>
-                    <div id="tech" className={`flex flex-col items-center border p-0.5 rounded-lg ${theme === 'dark' ? " border-pink-100/10" : " border-pink-800/10" }`}>
+                    <div id="tech" title="Technologies utilisées" className={`flex flex-col items-center border p-0.5 rounded-lg ${theme === 'dark' ? " border-pink-100/10" : " border-pink-800/10" }`}>
                         <Cog className="m-1 flex"/>
                         <div className="flex flex-wrap text-small-caps justify-center">
                             {allTech(realisation.tech)}
@@ -231,14 +227,14 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
                     </div>                    
                     <div id="links" className="flex flex-col items-center justify-around" >
                         <Link className="m-1"/>                         
-                        <div className="flex flex-col items-center ">
+                        <div className="flex flex-col items-center " title="lien de la page">
                             { realisation.link[0] !== "" && 
                             <div className="flex flex-col items-center mb-1">
                                 <p className="underline ">Lien de l&apos;app:</p>  
                                 {links(realisation.link)}  
                             </div>                                           
                             }
-                            <div className="flex flex-col items-center ">
+                            <div className="flex flex-col items-center " title="lien GitHub">
                                 <p className="underline">Liens GitHub:</p>  
                                 {links(realisation.linkGitHub)}                               
                             </div>  
@@ -256,11 +252,17 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
     return (
         <section className="w-full">
             <h1 className="text-pink-600 text-small-caps text-center text-5xl mb-6 "> Réalisations </h1>
+            <div className="w-full flex justify-center">
+                {myRealisations.map((realisation, i) => (
+                    <span
+                        key={realisation.id}
+                        className={`m-1 p-2 rounded-full transition duration-500 ease-in-out ${visibleRealisations.includes(i) ? 'bg-pink-600' : 'bg-pink-200'}`}
+                    ></span>
+                ))}
+            </div>
             {/* <div className="mb-4 w-full"> */}
-                <div className={`w-full scroll-smooth flex flex-nowrap overflow-x-auto md:justify-center space-x-3 scrollbar  ${theme ==="light" ? "scrollbar-thumb-pink-200  scrollbar-track-pink-100/50  " : "scrollbar-thumb-pink-600/50  scrollbar-track-pink-950/50"}`}>
-
+                <div className={`w-full flex flex-nowrap overflow-x-auto ${myRealisations.length < 3 ? 'md:justify-center' : ""}  space-x-3 scrollbar  ${theme ==="light" ? "scrollbar-thumb-pink-200  scrollbar-track-pink-100/50  " : "scrollbar-thumb-pink-600/50  scrollbar-track-pink-950/50"}`}>
                     {realisations()}
-                    
                 </div>            
             {/* </div> */}
         </section>

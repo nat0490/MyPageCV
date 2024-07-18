@@ -78,7 +78,7 @@ if (!mounted) return (<div className="w-screen h-screen flex justify-center item
         </div>
 
       <div ref={realisationsRef}  className={`w-full transition-opacity duration-2000 ${realisationsVisible ? 'opacity-100' : 'opacity-0'}`}>
-        <Realisations />
+        <Realisations realisationsVisible={realisationsVisible}/>
       </div>
 
       <div ref={player2} className={`w-full flex justify-end pr-8 sm:pr-24 lg:pr-48 -mb-10 transition-opacity duration-2000 ${player2Visible ? 'opacity-100' : 'opacity-0'}`}>

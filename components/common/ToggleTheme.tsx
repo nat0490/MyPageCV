@@ -20,7 +20,7 @@ const ToggleTheme: React.FC = () => {
     if (!mounted) return null;
 
     return (
-        <div className="w-full flex justify-end pr-8 sm:pr-14 md:pr-12 mb-6  md:my-0 ">
+        <div className="w-full flex justify-end pr-8 sm:pr-14 md:pr-12 mb-6  md:my-0 " title="Changer le thème">
             {/* xl:pr-48 lg:pr-48 md:pr-16 pr-60 md:mb-0  */}
             <button 
                 onClick={handleTheme}
