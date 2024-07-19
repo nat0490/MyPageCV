@@ -96,11 +96,26 @@ const myRealisations: Item[] = [
             "https://res.cloudinary.com/dawkemcl5/image/upload/v1721395011/Mes%20r%C3%A9alisations/Capture2_kus4q7.png",
             "https://res.cloudinary.com/dawkemcl5/image/upload/v1721395011/Mes%20r%C3%A9alisations/Capture1_a7sovq.png",          
         ],
-        tech: ["NextJS", "React"],
+        tech: ["Next", "React"],
         video: ["https://res.cloudinary.com/dawkemcl5/video/upload/v1721395012/Mes%20r%C3%A9alisations/Enregistrement_2024-07-19_151428_nglpwv.mp4"],
         link: [""],
         linkGitHub: [
             "", 
+        ]
+    },
+    {
+        id: 5,
+        name: "My moviz",
+        description: "Site permettant de d'afficher les derniers films sortis. Possibilité de liker (en gardant l'historique) et noter les films.",
+        image: [
+            "https://res.cloudinary.com/dawkemcl5/image/upload/v1721397358/Mes%20r%C3%A9alisations/Capture_1_tulrnr.png",       
+        ],
+        tech: ["API", "Dotenv", "ExpressJS", "Next", "NodeJS", "React", "Redux",],
+        video: ["https://res.cloudinary.com/dawkemcl5/video/upload/v1721397359/Mes%20r%C3%A9alisations/Enregistrement_2024-07-19_155534_dtjk43.mp4"],
+        link: [""],
+        linkGitHub: [
+            "https://github.com/nat0490/mymoviz-front", 
+            "https://github.com/nat0490/mymoviz-backend"
         ]
     },
 

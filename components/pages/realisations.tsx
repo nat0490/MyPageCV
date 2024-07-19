@@ -134,6 +134,7 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
 };
 
     const allImages = (imgs: string[], indexRealisation: number) => {
+        const mainImage = myRealisations[indexRealisation].image[currentIndex[indexRealisation]];
         const allImgs = [];
         for (let i = 0; i < imgs.length; i++) {
             const img = imgs[i];
@@ -142,11 +143,12 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
                     <Image                    
                         src={img}
                         alt={`Image ${i}`}
-                        // fill
+                        fill
                         // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        width={100}
-                        height={100}
-                        className="object-cover cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-150"
+                        sizes="100px"
+                        // width={100}
+                        // height={100}
+                        className={`object-cover cursor-pointer transition-transform duration-300 ease-in-out transform ${img === mainImage ? "scale-125" : "scale-100"}`}
                         priority
                     />
                 </div>
@@ -174,7 +176,7 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
             const displayText = isTruncated ? fullText.substring(0, 150) : fullText; 
 
             allRealisations.push(
-                <div key={`${realisation.id}`} ref={refs.current[i]} className={`flex flex-col w-full shrink-0 md:w-1/2 lg:w-1/3 `}>
+                <div key={`${realisation.id}`} ref={refs.current[i]} className={`flex flex-col w-full shrink-0 md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5 px-1`}>
                     {/* ${allRealisations.length >= 3 && "xl:w-1/3"}  */}
                     <div className="rounded-xl h-full bg-pink-700/5 p-2">
                     <h2 className="text-small-caps text-center text-xl m-2 bg-pink-600/10 rounded-lg">
@@ -195,15 +197,17 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
                                 <MoonLoader color="#db2777"/>}
                             </div>
                         {/* </div> */}
-                        <div 
-                            id="images" 
-                            className="flex flex-nowrap justify-center h-1/5 space-x-0.5 mt-0.5" 
-                            title="Images"                             
-                            >
-                            {allImages(realisation.image, i)}                            
-                        </div>                         
+                        {realisation.image.length > 1 &&
+                                        <div 
+                                        id="images" 
+                                        className="flex flex-nowrap justify-center h-1/5 space-x-0.5 mt-0.5" 
+                                        title="Images"                             
+                                        >
+                                        {allImages(realisation.image, i)}                            
+                                    </div>   
+                                    }                 
                     </div> 
-
+                                   
                     <div id="videos" className="flex justify-around my-2" title="Vidéos">
                         {videos(realisation.video)} 
                     </div> 
@@ -266,7 +270,7 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
                 ))}
             </div>
             {/* <div className="mb-4 w-full"> */}
-                <div className={`w-full flex flex-nowrap overflow-x-auto ${myRealisations.length < 3 ? 'md:justify-center' : ""}  space-x-3 scrollbar  ${theme ==="light" ? "scrollbar-thumb-pink-200  scrollbar-track-pink-100/50  " : "scrollbar-thumb-pink-600/50  scrollbar-track-pink-950/50"}`}>
+                <div className={`w-full flex flex-nowrap overflow-x-auto ${myRealisations.length < 3 ? 'md:justify-center' : ""}  scrollbar  ${theme ==="light" ? "scrollbar-thumb-pink-200  scrollbar-track-pink-100/50  " : "scrollbar-thumb-pink-600/50  scrollbar-track-pink-950/50"}`}>
                     {realisations()}
                 </div>            
             {/* </div> */}

@@ -59,7 +59,7 @@ const stylePlayer = windowWidth > 768
     const textFields = fields.filter(field => field.name === "message");
     const otherFields = fields.filter(field => field.name !== "message");
     const form = useRef<HTMLFormElement>(null);
-    const email_pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+    // const email_pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
     const [ isLoading, setIsLoading ] = useState<boolean>(false);
     const [ success, setSuccess ] = useState<string>("");
