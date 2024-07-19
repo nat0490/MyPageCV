@@ -14,8 +14,6 @@ const Realisations: React.FC<({ realisationsVisible: boolean })> = ({ realisatio
     const [currentIndex, setCurrentIndex] = useState<number[]>([]); 
     const intervalIdRef = useRef<NodeJS.Timeout | null>(null); 
 
-    console.log(currentIndex)
-
 //REALISATIONS VISIBLE A L'ECRAN
     const [visibleRealisations, setVisibleRealisations] = useState<number[]>([]); // Définir le type de l'état comme un tableau de nombres
     const refs = useRef<React.RefObject<HTMLDivElement>[]>(myRealisations.map(() => React.createRef<HTMLDivElement>()));
