@@ -14,7 +14,7 @@ const Realisations: React.FC<({ realisationsVisible: boolean })> = ({ realisatio
     const [currentIndex, setCurrentIndex] = useState<number[]>([]); 
     const intervalIdRef = useRef<NodeJS.Timeout | null>(null); 
 
-
+    console.log(currentIndex)
 
 //REALISATIONS VISIBLE A L'ECRAN
     const [visibleRealisations, setVisibleRealisations] = useState<number[]>([]); // Définir le type de l'état comme un tableau de nombres
@@ -144,8 +144,10 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
                     <Image                    
                         src={img}
                         alt={`Image ${i}`}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        // fill
+                        // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        width={100}
+                        height={100}
                         className="object-cover cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-150"
                         priority
                     />
@@ -224,8 +226,9 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
                         <div className="flex flex-wrap text-small-caps justify-center">
                             {allTech(realisation.tech)}
                         </div>
-                    </div>                    
-                    <div id="links" className="flex flex-col items-center justify-around" >
+                    </div>   
+                    { (realisation.link[0] === "" && realisation.linkGitHub[0] === "") ? "":
+                        <div id="links" className="flex flex-col items-center justify-around" >
                         <Link className="m-1"/>                         
                         <div className="flex flex-col items-center " title="lien de la page">
                             { realisation.link[0] !== "" && 
@@ -234,12 +237,16 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
                                 {links(realisation.link)}  
                             </div>                                           
                             }
-                            <div className="flex flex-col items-center " title="lien GitHub">
-                                <p className="underline">Liens GitHub:</p>  
-                                {links(realisation.linkGitHub)}                               
-                            </div>  
+                            { realisation.linkGitHub[0] !== "" && 
+                            <div className="flex flex-col items-center">
+                                <p className="underline ">Liens GitHub:</p>  
+                                {links(realisation.linkGitHub)}  
+                            </div>                                           
+                            }
                         </div>
                     </div>
+                    }                 
+                    
                     </div>
                 </div>
             );
