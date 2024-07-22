@@ -56,9 +56,7 @@ const Skills: React.FC = () => {
                     scrollElement.removeEventListener('scroll', handleScroll);            
                 };
             }      
-
-        }
-        
+        }       
     },[mounted]);
 
 //DETECTION POSITION DE LA SOURIS POUR SCROLLER VERTICALEMENT
@@ -90,13 +88,13 @@ const Skills: React.FC = () => {
                 };
                 const containerRect = scrollElement.getBoundingClientRect();
                 const mouseX = event.clientX - containerRect.left;
-                if (mouseX >= (clientWidth*0.9)){
+                if (mouseX >= (clientWidth*0.8)){
                     if (scrollPosition === 'start') {
                         scrollToMiddle();
                     } else if(scrollPosition === 'middle') {
                         scrollToRight();
                     } 
-                } else if (mouseX <= (clientWidth*0.1)) {
+                } else if (mouseX <= (clientWidth*0.2)) {
                     if (scrollPosition === 'end') {
                         scrollToMiddle();
                     } else if(scrollPosition === 'middle') {

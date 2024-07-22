@@ -1,5 +1,5 @@
 // "use client";
-import React, { useEffect, useRef, useState} from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState} from "react";
 import myRealisations from "@/data/realisations";
 import Image from "next/image";
 import { BeatLoader, MoonLoader} from 'react-spinners';
@@ -10,13 +10,17 @@ import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 const Realisations: React.FC<({ realisationsVisible: boolean })> = ({ realisationsVisible }) => {
     const { theme, setTheme } = useTheme();
 
+    // const realisationsReverse = [...myRealisations].reverse();
+    const realisationsReverse = useMemo(() => [...myRealisations].reverse(), []);
+    // console.log(realisationsReverse);
+
     const [mounted, setMounted] = useState<boolean>(false);
     const [currentIndex, setCurrentIndex] = useState<number[]>([]); 
     const intervalIdRef = useRef<NodeJS.Timeout | null>(null); 
 
 //REALISATIONS VISIBLE A L'ECRAN
     const [visibleRealisations, setVisibleRealisations] = useState<number[]>([]); // Définir le type de l'état comme un tableau de nombres
-    const refs = useRef<React.RefObject<HTMLDivElement>[]>(myRealisations.map(() => React.createRef<HTMLDivElement>()));
+    const refs = useRef<React.RefObject<HTMLDivElement>[]>(realisationsReverse.map(() => React.createRef<HTMLDivElement>()));
 
     useEffect(() => {
         if(realisationsVisible) {
@@ -46,17 +50,29 @@ const Realisations: React.FC<({ realisationsVisible: boolean })> = ({ realisatio
         setMounted(true);
     }, []);
 
+    // const handleNextImage = () => {
+    //     setCurrentIndex((prevIndex) =>
+    //         prevIndex.map((index, i) => (index + 1) % realisationsReverse[i].image.length)
+    //     );
+    // };
+
+    const handleNextImage = useCallback(() => {
+        setCurrentIndex((prevIndex) =>
+            prevIndex.map((index, i) => (index + 1) % realisationsReverse[i].image.length)
+        );
+    }, [realisationsReverse]);
+    
 //INITALISATION INDEX POUR AFFICHAGE IMAGE + INTERVAL
     useEffect(() => {
         if (!mounted) return;
-        setCurrentIndex(myRealisations.map(() => 0));
+        setCurrentIndex(realisationsReverse.map(() => 0));
         intervalIdRef.current = setInterval(handleNextImage, 3000);
         return () => {
             if (intervalIdRef.current) {
                 clearInterval(intervalIdRef.current);
             }
         };
-    }, [mounted]);
+    }, [mounted, realisationsReverse, handleNextImage]);
   
 //LIENS VIDEOS
     const videos = (video: string[]) => {
@@ -80,10 +96,10 @@ const Realisations: React.FC<({ realisationsVisible: boolean })> = ({ realisatio
 //DESCRIPTION
     const [truncatedTexts, setTruncatedTexts] = useState<boolean[]>([]);
     useEffect(() => {
-        const initialTruncatedTexts = myRealisations.map(realisation => true);
+        const initialTruncatedTexts = realisationsReverse.map(realisation => true);
         // console.log(initialTruncatedTexts);
         setTruncatedTexts(initialTruncatedTexts);
-    }, []);
+    }, [realisationsReverse]);
      const toggleDescription = (index: number) => {
         setTruncatedTexts(prevTexts => {
             return prevTexts.map((isTruncated, i) => {
@@ -134,7 +150,7 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
 };
 
     const allImages = (imgs: string[], indexRealisation: number) => {
-        const mainImage = myRealisations[indexRealisation].image[currentIndex[indexRealisation]];
+        const mainImage = realisationsReverse[indexRealisation].image[currentIndex[indexRealisation]];
         const allImgs = [];
         for (let i = 0; i < imgs.length; i++) {
             const img = imgs[i];
@@ -159,16 +175,13 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
  
 
 //CHANGER LA GRANDE IMAGE AFFICHE
-    const handleNextImage = () => {
-        setCurrentIndex((prevIndex) =>
-            prevIndex.map((index, i) => (index + 1) % myRealisations[i].image.length)
-        );
-    };
+    
 
     const realisations = () => {
+        // const realisationsReverse = realisationsReverse.reverse();
         const allRealisations = [];           
-        for (let i = 0; i < myRealisations.length; i++) {
-            const realisation = myRealisations[i];
+        for (let i = 0; i < realisationsReverse.length; i++) {
+            const realisation = realisationsReverse[i];
             const mainImage = realisation.image[currentIndex[i]];
             // console.log(mainImage);
             const isTruncated = truncatedTexts[i];
@@ -262,7 +275,7 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
         <section className="w-full">
             <h1 className="text-pink-600 text-small-caps text-center text-5xl mb-6 "> Réalisations </h1>
             <div className="w-full flex justify-center">
-                {myRealisations.map((realisation, i) => (
+                {realisationsReverse.map((realisation, i) => (
                     <span
                         key={realisation.id}
                         className={`m-1 p-2 rounded-full transition duration-500 ease-in-out ${visibleRealisations.includes(i) ? 'bg-pink-600' : 'bg-pink-200'}`}
@@ -270,7 +283,7 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
                 ))}
             </div>
             {/* <div className="mb-4 w-full"> */}
-                <div className={`w-full flex flex-nowrap overflow-x-auto ${myRealisations.length < 3 ? 'md:justify-center' : ""}  scrollbar  ${theme ==="light" ? "scrollbar-thumb-pink-200  scrollbar-track-pink-100/50  " : "scrollbar-thumb-pink-600/50  scrollbar-track-pink-950/50"}`}>
+                <div className={`w-full flex flex-nowrap overflow-x-auto ${realisationsReverse.length < 3 ? 'md:justify-center' : ""}  scrollbar  ${theme ==="light" ? "scrollbar-thumb-pink-200  scrollbar-track-pink-100/50  " : "scrollbar-thumb-pink-600/50  scrollbar-track-pink-950/50"}`}>
                     {realisations()}
                 </div>            
             {/* </div> */}
