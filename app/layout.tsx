@@ -27,7 +27,21 @@ export default function RootLayout({ children}: Readonly<{children: React.ReactN
             <title>Nathalie Sartor</title>
             <meta name="description" content="A propos de moi, mon parcours, mes réalisations" />
             <meta name="author" content="Nathalie Sartor" />
-            <meta name="image" content="require(@assets/moi_meme.png)" />
+            <meta name="image" content={require("@assets/moi_meme.png")} />
+
+            {/* <!-- Open Graph Meta Tags (for Facebook, LinkedIn, etc.) --> */}
+              {/* <meta property="og:title" content="Nathalie Sartor" />
+              <meta property="og:description" content="A propos de moi, mon parcours, mes réalisations" />
+              <meta property="og:image" content="https://yourdomain.com/path/to/your-image.png" />
+              <meta property="og:url" content="https://yourdomain.com" />
+              <meta property="og:type" content="website" /> */}
+              
+              {/* <!-- Twitter Card Meta Tags --> */}
+              {/* <meta name="twitter:card" content="summary_large_image" />
+              <meta name="twitter:title" content="Nathalie Sartor" />
+              <meta name="twitter:description" content="A propos de moi, mon parcours, mes réalisations" />
+              <meta name="twitter:image" content="https://yourdomain.com/path/to/your-image.png" />
+              <meta name="twitter:url" content="https://yourdomain.com" /> */}
           </head>
           <body className={inter.className }>
             <ThemeProvider>{children}</ThemeProvider>
