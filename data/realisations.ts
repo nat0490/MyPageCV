@@ -60,6 +60,75 @@ const myRealisations: Item[] = [
     },
     {
         id: 4,
+        name: "Food App",
+        description: "Application Mobile affichant des recettes de cuisine. Possibilité de modifier le nombre de personnes pour avoir la bonne quantité d'ingrédients. Possibilité également d'ajouter des recettes en favorites.",
+        image: [
+            "https://res.cloudinary.com/dawkemcl5/image/upload/v1721661649/Mes%20r%C3%A9alisations/Screenshot_20240722_171211_Expo_Go_k73hp7.jpg",
+            "https://res.cloudinary.com/dawkemcl5/image/upload/v1721661648/Mes%20r%C3%A9alisations/Screenshot_20240722_171333_Expo_Go_nrh0v5.jpg",
+            "https://res.cloudinary.com/dawkemcl5/image/upload/v1721661648/Mes%20r%C3%A9alisations/Screenshot_20240722_171337_Expo_Go_fembv1.jpg",
+            "https://res.cloudinary.com/dawkemcl5/image/upload/v1721661648/Mes%20r%C3%A9alisations/Screenshot_20240722_171304_Expo_Go_qqlsr1.jpg",
+            "https://res.cloudinary.com/dawkemcl5/image/upload/v1721661648/Mes%20r%C3%A9alisations/Screenshot_20240722_171312_Expo_Go_ahz0nb.jpg"
+        ],
+        tech: ["Expo", "ReactNative", "Redux"],
+        video: ["https://res.cloudinary.com/dawkemcl5/video/upload/v1721661649/Mes%20r%C3%A9alisations/Screen_Recording_20240722_171257_Expo_Go_w3ctjo.mp4"],
+        link: [""],
+        linkGitHub: [
+            "https://github.com/nat0490/foodapp", 
+        ]
+    },
+    {
+        id: 5,
+        name: "Mappulator",
+        description: "Description : Application mobile de localisation. Notre position s'affiche sur une carte lors de notre connexion (après autorisation), ainsi que différents sites touristiques. On peut voir la distance nous séparant de chaque point.",
+        image: [
+            "https://res.cloudinary.com/dawkemcl5/image/upload/v1721664367/Mes%20r%C3%A9alisations/Screenshot_20240722_180321_Expo_Go_h1jpli.jpg",
+            "https://res.cloudinary.com/dawkemcl5/image/upload/v1721664367/Mes%20r%C3%A9alisations/Screenshot_20240722_175240_Expo_Go_bokccg.jpg",
+            "https://res.cloudinary.com/dawkemcl5/image/upload/v1721664368/Mes%20r%C3%A9alisations/Screenshot_20240722_180329_Expo_Go_lcrx3a.jpg",
+            "https://res.cloudinary.com/dawkemcl5/image/upload/v1721664368/Mes%20r%C3%A9alisations/Screenshot_20240722_180340_Expo_Go_r9sd5g.jpg",
+            "https://res.cloudinary.com/dawkemcl5/image/upload/v1721664368/Mes%20r%C3%A9alisations/Screenshot_20240722_180335_Expo_Go_tuhand.jpg",         
+        ],
+        tech: ["Dotenv", "Expo", "Expo-location", "ExpressJS","Node", "ReactNative", "Redux"],
+        video: ["https://res.cloudinary.com/dawkemcl5/video/upload/v1721664378/Mes%20r%C3%A9alisations/Screen_Recording_20240722_180438_Expo_Go_xjrv7v.mp4"],
+        link: [""],
+        linkGitHub: [
+            "https://github.com/nat0490/Mappulator", 
+        ]
+    },
+    {
+        id: 6,
+        name: "Locapic",
+        description: "Application mobile de localisation. Notre position s'affiche sur une carte lors de notre connexion (après autorisation). On peut ensuite ajouter des marqueurs sur la carte en utilisant deux options : en restant appuyé sur la carte ou via l'onglet “Places”, où l'on saisit le nom de la ville.",
+        image: [
+            "https://res.cloudinary.com/dawkemcl5/image/upload/v1721661928/Mes%20r%C3%A9alisations/Screenshot_20240722_162128_Expo_Go_pec9rr.jpg",
+            "https://res.cloudinary.com/dawkemcl5/image/upload/v1721661965/Mes%20r%C3%A9alisations/Screenshot_20240722_162234_Expo_Go_davbkb.jpg",
+            "https://res.cloudinary.com/dawkemcl5/image/upload/v1721661951/Mes%20r%C3%A9alisations/Screenshot_20240722_162217_Expo_Go_urumop.jpg",
+            "https://res.cloudinary.com/dawkemcl5/image/upload/v1721661951/Mes%20r%C3%A9alisations/Screenshot_20240722_162145_Expo_Go_qw0gal.jpg",
+            "https://res.cloudinary.com/dawkemcl5/image/upload/v1721661951/Mes%20r%C3%A9alisations/Screenshot_20240722_162137_Expo_Go_mhaop2.jpg",               
+        ],
+        tech: ["Dotenv", "Expo", "Expo-location", "ExpressJS","Node", "MongoDB", "ReactNative", "Redux"],
+        video: ["https://res.cloudinary.com/dawkemcl5/video/upload/v1721661931/Mes%20r%C3%A9alisations/Screen_Recording_20240722_162526_Expo_Go_m1ppou.mp4"],
+        link: [""],
+        linkGitHub: [
+            "https://github.com/nat0490/locapic-frontend", 
+            "https://github.com/nat0490/locapic-backend"
+        ]
+    },
+    // {
+    //     id: 7,
+    //     name: "FaceUp",
+    //     description: "Application mobile ",
+    //     image: [
+                           
+    //     ],
+    //     tech: ["Dotenv", "Expo", "Expo-location", "ExpressJS","Node", "MongoDB", "ReactNative", "Redux"],
+    //     video: [""],
+    //     link: [""],
+    //     linkGitHub: [
+    //         ""
+    //     ]
+    // },
+    {
+        id: 8,
         name: "Chef's Liberation",
         description: "Application Mobile permettant de voir les chefs à proximité de chez soi ou de les choisir via leur plat. Une fois un plat choisi, on vient choisir la date de la prestation (quand le chef viendra cuisiner chez soi). On peut venir modifier ses informations utilisateur via son profil. Egalement la possibilité de passer chef et de pouvoir proposer ses plats",
         image: [
@@ -90,7 +159,7 @@ const myRealisations: Item[] = [
         ]
     },
     {
-        id: 5,
+        id: 9,
         name: "Flowst",
         description: "Application Web permettant la publication de posts avec photos et #. Possibilité de changer de thème, faire des recherches par # et liker les posts/commentaires. Notifications également présentes.",
         image: [

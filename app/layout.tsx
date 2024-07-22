@@ -27,6 +27,7 @@ export default function RootLayout({ children}: Readonly<{children: React.ReactN
             <title>Nathalie Sartor</title>
             <meta name="description" content="A propos de moi, mon parcours, mes réalisations" />
             <meta name="author" content="Nathalie Sartor" />
+            <meta name="image" content="require(@assets/moi_meme.png)" />
           </head>
           <body className={inter.className }>
             <ThemeProvider>{children}</ThemeProvider>

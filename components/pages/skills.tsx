@@ -11,21 +11,21 @@ const Skills: React.FC = () => {
         setMounted(true);
     }, []);
 
-    const allSkills = [        
-        {src : require("@/assets/skills/iconNext.png"), name : "Next JS"},
-        {src : require("@/assets/skills/iconReact.png"), name : "React & React Native"},
-        {src : require("@/assets/skills/iconTailwind.png"), name : "Tailwind CSS"},
-        {src : theme === "light" ? require("@/assets/skills/iconGit1.png") : require("@/assets/skills/iconGit2.png"), name : "Git"},
-       
-        {src : require("@/assets/skills/iconNode.png"), name : "Node JS"},
-        {src : require("@/assets/skills/iconExpo.png"), name : "Expo"},
-        {src : require("@/assets/skills/iconExpress.png"), name : "Express JS"},
-        {src : require("@/assets/skills/iconMongoDB.png"), name : "MongoDB"},        
-        {src : require("@/assets/skills/iconJS.png"), name : "JavaScript"},
-        {src : theme === "light" ? require("@/assets/skills/iconTS1.png") : require("@/assets/skills/iconTS2.png"), name : "TypeScript"},
-        {src : require("@/assets/skills/iconRedux.png"), name : "Redux"},
-        {src : require("@/assets/skills/iconVercel.png"), name : "Vercel"},
-    ]
+    const allSkills = [
+        {src: require("@/assets/skills/iconExpo.png"), name: "Expo"},
+        {src: require("@/assets/skills/iconExpress.png"), name: "Express JS"},
+        {src: theme === "light" ? require("@/assets/skills/iconGit1.png") : require("@/assets/skills/iconGit2.png"), name: "Git"},
+        {src: require("@/assets/skills/iconJS.png"), name: "JavaScript"},
+        {src: require("@/assets/skills/iconMongoDB.png"), name: "MongoDB"},
+        {src: require("@/assets/skills/iconNode.png"), name: "Node JS"},
+        {src: require("@/assets/skills/iconNext.png"), name: "Next JS"},
+        {src: require("@/assets/skills/iconReact.png"), name: "React & React Native"},
+        {src: require("@/assets/skills/iconRedux.png"), name: "Redux"},
+        {src: require("@/assets/skills/iconTailwind.png"), name: "Tailwind CSS"},
+        {src: theme === "light" ? require("@/assets/skills/iconTS1.png") : require("@/assets/skills/iconTS2.png"), name: "TypeScript"},
+        {src: require("@/assets/skills/iconVercel.png"), name: "Vercel"}
+    ];     
+        
 
     const [scrollPosition, setScrollPosition] = useState<'start' | 'middle' | 'end'>('start');
     const scrollContainerRef = useRef<HTMLDivElement>(null);
