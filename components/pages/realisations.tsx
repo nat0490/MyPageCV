@@ -191,11 +191,10 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
             allRealisations.push(
                 <div key={`${realisation.id}`} ref={refs.current[i]} className={`flex flex-col w-full shrink-0 md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5 px-1 `}>
                     {/* ${allRealisations.length >= 3 && "xl:w-1/3"}  */}
-                    <div className="rounded-xl h-full bg-pink-700/5 p-2 mb-1  ">
+                    <div className={`rounded-xl h-full ${theme === "light" ? "bg-pink-200/10" : "bg-pink-700/5"}  p-2 mb-1  `}>
                     <h2 className="text-small-caps text-center text-xl m-2 bg-pink-600/10 rounded-lg">
                         {realisation.name}
                     </h2>
-
                     <div className="flex flex-col  h-72  lg:h-80 xl:h-96 " >
                         {/* <div className="flex flex-col h-72 md:h-48 lg:h-64 xl:h-56 2xl:h-72"> */}
                             <div id="GrandeImage" className="relative h-full w-full">
@@ -220,12 +219,10 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
                                         {allImages(realisation.image, i)}                            
                                     </div>   
                                     }                 
-                    </div> 
-                                   
+                    </div>                                    
                     <div id="videos" className="flex justify-around mt-3 mb-1" title="Vidéos">
                         {videos(realisation.video)} 
                     </div> 
-
                     <div 
                         id="descriptionContainer"
                         title="Description"
@@ -237,52 +234,49 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
                             
                         </p>
                     </div>
-                    <div id="tech" title="Technologies utilisées" className={`flex flex-col items-center border p-0.5 rounded-lg ${theme === 'dark' ? " border-pink-100/10" : " border-pink-800/10" }`}>
-                        <Cog size={18} className="m-1 flex"/>
-                        <div className="flex flex-wrap text-small-caps justify-center ">
+                    <div id="tech" title="Technologies utilisées" className={`border p-0.5 ml-2 rounded-lg ${theme === 'dark' ? " border-pink-100/10" : " border-pink-800/10" }`}>
+                    {/* <div id="tech" title="Technologies utilisées" className={`flex flex-col items-center border p-0.5 rounded-lg ${theme === 'dark' ? " border-pink-100/10" : " border-pink-800/10" }`}> */}
+                    {/* <Cog size={18} className="m-1 flex"/> */}
+                        <Cog size={20} className="-mt-2 -mb-1 -ml-2"/>
+                        <div className="flex flex-wrap text-small-caps justify-center pb-1">
                             {allTech(realisation.tech)}
                         </div>
-                    </div>   
-                    { (realisation.link[0] === "" && realisation.linkGitHub[0] === "") ? "":
-                        <div id="links" className="flex flex-col items-center justify-around mt-1" >
-                        <Link size={18} className="m-1"/>                         
-                        <div className="flex flex-col items-center " title="lien de la page">
-                            { realisation.link[0] !== "" && 
-                            <div className="flex flex-col items-center mb-1">
-                                <p><span className="underline mr-2 ">App:</span> 
-                                    <a    
-                                        href={realisation.link.toString()}
-                                        className="text-small-caps font-bold text-center text-pink-400 hover:text-pink-600 hover:cursor-pointer text-sm"
-                                        target="_blank" 
-                                        rel="noopener noreferrer"
-                                    > {realisation.link} </a>      
-                                </p>
-                                {/* {links(realisation.link)}   */}
-                            </div>                                           
-                            }
+                    </div>  
 
-                            { realisation.linkGitHub[0] !== "" && 
-                            <div className="flex flex-col items-center">
-                                <p><span className="underline mr-2 ">GitHub:</span> 
-                                {realisation.linkGitHub.map((link, index) => (                               
-                                        <a  key={`${index}`}
-                                            href={link}
-                                            className="text-small-caps font-bold text-center mr-2 text-pink-400 hover:text-pink-600 hover:cursor-pointer text-sm"
+                    { (realisation.link[0] === "" && realisation.linkGitHub[0] === "") ? "":
+                    //  <div id="links" className="flex flex-col items-center justify-around mt-1" >
+                        <div id="links" className="flex items-center justify-center mt-2 ml-4 " > 
+                            <Link size={18} className="m-1 mr-6"/>                         
+                            <div className="flex flex-col items-center justify-center " title="lien de la page">
+                                { realisation.link[0] !== "" && 
+                                <div className="flex flex-col w-full items-center  mb-1">
+                                    <p><span className="underline mr-2 ">App:</span> 
+                                        <a    
+                                            href={realisation.link.toString()}
+                                            className="text-small-caps font-bold text-center text-pink-400 hover:text-pink-600 hover:cursor-pointer text-sm"
                                             target="_blank" 
                                             rel="noopener noreferrer"
-                                        > Lien {index +1} </a>  
-                                    
-                                ))}</p>
-
-                                {/* {links(realisation.linkGitHub)}   */}
-                            </div>                                           
-                            }
-
-
+                                        > {realisation.link} </a>      
+                                    </p>
+                                </div>                                           
+                                }
+                                { realisation.linkGitHub[0] !== "" && 
+                                <div className="flex flex-col items-center">
+                                    <p><span className="underline mr-2 ">GitHub:</span> 
+                                    {realisation.linkGitHub.map((link, index) => (                               
+                                            <a  key={`${index}`}
+                                                href={link}
+                                                className="text-small-caps font-bold text-center mr-2 text-pink-400 hover:text-pink-600 hover:cursor-pointer text-sm"
+                                                target="_blank" 
+                                                rel="noopener noreferrer"
+                                            > Lien {index +1} </a>  
+                                        
+                                    ))}</p>
+                                </div>                                           
+                                }
+                            </div>
                         </div>
-                    </div>
-                    }                 
-                    
+                    }                   
                     </div>
                 </div>
             );
