@@ -5,7 +5,7 @@ import Image from "next/image";
 import { BeatLoader, MoonLoader} from 'react-spinners';
 import { Link, MousePointerClick,Cog } from 'lucide-react';
 import { useTheme } from "next-themes";
-import useIntersectionObserver from "@/hooks/useIntersectionObserver";
+// import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 
 const Realisations: React.FC<({ realisationsVisible: boolean })> = ({ realisationsVisible }) => {
     const { theme, setTheme } = useTheme();
@@ -117,28 +117,28 @@ const Realisations: React.FC<({ realisationsVisible: boolean })> = ({ realisatio
         for (let i = 0; i < tech.length; i++) {
             const t = tech[i];
             allTechs.push(
-                <span key={`${i}`} className="flex flex-nowrap mr-1">{t} </span>
+                <span key={`${i}`} className="flex flex-nowrap mr-1 text-sm">{t} </span>
             )
         }
         return allTechs;
     }
 
 //LIENS
-    const links = (link: string[]) => {
-        const allLinks = [];
-        for (let i = 0; i < link.length; i++) {
-            const l = link[i];
-            allLinks.push(                  
-                <a  key={`${i}`}
-                    href={l}
-                    className="text-small-caps font-bold text-center text-pink-400 hover:text-pink-600 hover:cursor-pointer text-sm"
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                > {l} </a>                    
-            )
-        }
-        return allLinks;
-    };
+    // const links = (link: string[]) => {
+    //     const allLinks = [];
+    //     for (let i = 0; i < link.length; i++) {
+    //         const l = link[i];
+    //         allLinks.push(                  
+    //             <a  key={`${i}`}
+    //                 href={l}
+    //                 className="text-small-caps font-bold text-center text-pink-400 hover:text-pink-600 hover:cursor-pointer text-sm"
+    //                 target="_blank" 
+    //                 rel="noopener noreferrer"
+    //             > {l} </a>                    
+    //         )
+    //     }
+    //     return allLinks;
+    // };
 
 //IMAGES
 const handleImage = (indexRealisation: number, indexImage: number) => {
@@ -186,12 +186,12 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
             // console.log(mainImage);
             const isTruncated = truncatedTexts[i];
             const fullText = realisation.description;
-            const displayText = isTruncated ? fullText.substring(0, 150) : fullText; 
+            const displayText = isTruncated ? fullText.substring(0, 100) : fullText; 
 
             allRealisations.push(
-                <div key={`${realisation.id}`} ref={refs.current[i]} className={`flex flex-col w-full shrink-0 md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5 px-1`}>
+                <div key={`${realisation.id}`} ref={refs.current[i]} className={`flex flex-col w-full shrink-0 md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5 px-1 `}>
                     {/* ${allRealisations.length >= 3 && "xl:w-1/3"}  */}
-                    <div className="rounded-xl h-full bg-pink-700/5 p-2">
+                    <div className="rounded-xl h-full bg-pink-700/5 p-2 mb-1  ">
                     <h2 className="text-small-caps text-center text-xl m-2 bg-pink-600/10 rounded-lg">
                         {realisation.name}
                     </h2>
@@ -203,7 +203,8 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
                                     src={mainImage}
                                     alt={`Image principale ${i}`}
                                     fill
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    sizes="500px"
                                     className="absolute inset-0 object-contain w-full h-full "
                                     priority
                                 /> :
@@ -221,7 +222,7 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
                                     }                 
                     </div> 
                                    
-                    <div id="videos" className="flex justify-around my-2" title="Vidéos">
+                    <div id="videos" className="flex justify-around mt-3 mb-1" title="Vidéos">
                         {videos(realisation.video)} 
                     </div> 
 
@@ -232,32 +233,52 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
                         className={`group cursor-pointer text-center ${theme === 'dark' ? "hover:bg-white/5" : "hover:bg-black/5" } rounded-lg py-1.5 my-0.5`}
                     >
                         <p id="description" className="text-center ">
-                            {displayText}{isTruncated && fullText.length > 150 && <span className="group-hover:font-bold group-hover:animate-ping ">... </span>   }
+                            {displayText}{isTruncated && fullText.length > 100 && <span className="group-hover:font-bold group-hover:animate-ping ">... </span>   }
                             
                         </p>
                     </div>
                     <div id="tech" title="Technologies utilisées" className={`flex flex-col items-center border p-0.5 rounded-lg ${theme === 'dark' ? " border-pink-100/10" : " border-pink-800/10" }`}>
-                        <Cog className="m-1 flex"/>
-                        <div className="flex flex-wrap text-small-caps justify-center">
+                        <Cog size={18} className="m-1 flex"/>
+                        <div className="flex flex-wrap text-small-caps justify-center ">
                             {allTech(realisation.tech)}
                         </div>
                     </div>   
                     { (realisation.link[0] === "" && realisation.linkGitHub[0] === "") ? "":
-                        <div id="links" className="flex flex-col items-center justify-around" >
-                        <Link className="m-1"/>                         
+                        <div id="links" className="flex flex-col items-center justify-around mt-1" >
+                        <Link size={18} className="m-1"/>                         
                         <div className="flex flex-col items-center " title="lien de la page">
                             { realisation.link[0] !== "" && 
                             <div className="flex flex-col items-center mb-1">
-                                <p className="underline ">Lien de l&apos;app:</p>  
-                                {links(realisation.link)}  
+                                <p><span className="underline mr-2 ">App:</span> 
+                                    <a    
+                                        href={realisation.link.toString()}
+                                        className="text-small-caps font-bold text-center text-pink-400 hover:text-pink-600 hover:cursor-pointer text-sm"
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                    > {realisation.link} </a>      
+                                </p>
+                                {/* {links(realisation.link)}   */}
                             </div>                                           
                             }
+
                             { realisation.linkGitHub[0] !== "" && 
                             <div className="flex flex-col items-center">
-                                <p className="underline ">Liens GitHub:</p>  
-                                {links(realisation.linkGitHub)}  
+                                <p><span className="underline mr-2 ">GitHub:</span> 
+                                {realisation.linkGitHub.map((link, index) => (                               
+                                        <a  key={`${index}`}
+                                            href={link}
+                                            className="text-small-caps font-bold text-center mr-2 text-pink-400 hover:text-pink-600 hover:cursor-pointer text-sm"
+                                            target="_blank" 
+                                            rel="noopener noreferrer"
+                                        > Lien {index +1} </a>  
+                                    
+                                ))}</p>
+
+                                {/* {links(realisation.linkGitHub)}   */}
                             </div>                                           
                             }
+
+
                         </div>
                     </div>
                     }                 
@@ -283,7 +304,8 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
                 ))}
             </div>
             {/* <div className="mb-4 w-full"> */}
-                <div className={`w-full flex flex-nowrap overflow-x-auto ${realisationsReverse.length < 3 ? 'md:justify-center' : ""}  scrollbar  ${theme ==="light" ? "scrollbar-thumb-pink-200  scrollbar-track-pink-100/50  " : "scrollbar-thumb-pink-600/50  scrollbar-track-pink-950/50"}`}>
+                <div className={`w-full flex flex-nowrap overflow-x-auto ${realisationsReverse.length < 3 ? 'md:justify-center' : ""}  scrollbar  scrollbar-thumb-pink-600/50 ${theme ==="light" ?  "scrollbar-track-pink-100/50  " : " scrollbar-track-pink-950/50"}`}>
+                {/* scrollbar-thumb-rounded-full */}
                     {realisations()}
                 </div>            
             {/* </div> */}

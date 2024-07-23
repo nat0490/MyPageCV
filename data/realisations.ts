@@ -113,20 +113,22 @@ const myRealisations: Item[] = [
             "https://github.com/nat0490/locapic-backend"
         ]
     },
-    // {
-    //     id: 7,
-    //     name: "FaceUp",
-    //     description: "Application mobile ",
-    //     image: [
-                           
-    //     ],
-    //     tech: ["Dotenv", "Expo", "Expo-location", "ExpressJS","Node", "MongoDB", "ReactNative", "Redux"],
-    //     video: [""],
-    //     link: [""],
-    //     linkGitHub: [
-    //         ""
-    //     ]
-    // },
+    {
+        id: 7,
+        name: "FaceUp",
+        description: "Application mobile de prise de photos. Une fois connecté à l'application, on peut prendre des photos et voir sa galerie.",
+        image: ["https://res.cloudinary.com/dawkemcl5/image/upload/v1721730734/Mes%20r%C3%A9alisations/Screenshot_20240722_184328_Expo_Go_fithtn.jpg",
+                "https://res.cloudinary.com/dawkemcl5/image/upload/v1721730735/Mes%20r%C3%A9alisations/Screenshot_20240723_122830_Expo_Go_tpyqen.jpg",
+                "https://res.cloudinary.com/dawkemcl5/image/upload/v1721730734/Mes%20r%C3%A9alisations/Screenshot_20240723_122819_Expo_Go_sqrb9x.jpg"                           
+        ],
+        tech: ["Cloudinary", "Dotenv", "Expo", "Expo-camera", "ExpressJS","Node", "MongoDB", "ReactNative", "Redux-persist"],
+        video: ["https://res.cloudinary.com/dawkemcl5/video/upload/v1721730740/Mes%20r%C3%A9alisations/Screen_Recording_20240723_122811_Expo_Go_rmfcmv.mp4"],
+        link: [""],
+        linkGitHub: [
+            "https://github.com/nat0490/faceUp-frontend",
+            "https://github.com/nat0490/faceUp-backend"
+        ]
+    },
     {
         id: 8,
         name: "Chef's Liberation",
@@ -150,7 +152,7 @@ const myRealisations: Item[] = [
             "https://res.cloudinary.com/dawkemcl5/image/upload/v1720797320/Mes%20r%C3%A9alisations/userProfil_ko1wio.jpg",
             
         ],
-        tech: ["Bcrypt", "Cloudinary", "Dotenv", "Expo", "ExpressJS", "MongoDB", "NodeJS", "ReactNative", "Redux", "Uid2", "Vercel"],
+        tech: ["Bcrypt", "Cloudinary", "Dotenv", "Expo", "ExpressJS", "MongoDB", "NodeJS", "ReactNative", "Redux-persist", "Uid2", "Vercel"],
         video: ["https://res.cloudinary.com/dawkemcl5/video/upload/v1720798232/Mes%20r%C3%A9alisations/Video_App_q8jgfh.mp4"],
         link: [""],
         linkGitHub: [
@@ -175,7 +177,7 @@ const myRealisations: Item[] = [
             "https://res.cloudinary.com/dawkemcl5/image/upload/v1720795842/Mes%20r%C3%A9alisations/CapturePC10_zdnnvr.png",
             "https://res.cloudinary.com/dawkemcl5/image/upload/v1720795875/Mes%20r%C3%A9alisations/CapturePC11_djy8ao.png",            
         ],
-        tech: ["Bcrypt", "Cloudinary", "Dotenv", "ExpressJS", "MongoDB", "NodeJS", "React", "Redux", "Uid2", "Vercel"],
+        tech: ["Bcrypt", "Cloudinary", "Dotenv", "ExpressJS", "MongoDB", "NodeJS", "React", "Redux-persist", "Uid2", "Vercel"],
         video: [
             "https://res.cloudinary.com/dawkemcl5/video/upload/v1720793332/Mes%20r%C3%A9alisations/DemoPC_uwis6y.mp4",
             "https://res.cloudinary.com/dawkemcl5/video/upload/v1720794865/Mes%20r%C3%A9alisations/DemoMobile_urnahj.mp4",
