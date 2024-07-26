@@ -1,16 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import monParcours from "@/data/monParcours";
 import { useTheme } from "next-themes";
 import { BeatLoader } from "react-spinners";
 import { Baby, BriefcaseBusiness, GraduationCap, Library, Eye, SkipBack, SkipForward, MapPin, ChevronsRight, ChevronsLeft } from "lucide-react";
 
-const AboutMe: React.FC = () => {
+const AboutMe: React.FC<({ aboutMeVisible: boolean})> = ({ aboutMeVisible }) => {
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState<boolean>(false); 
-    const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth); 
+    // const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth); 
 
     const scrollContainerRef = useRef<HTMLDivElement>(null);
-    const elementWidthRef = useRef<HTMLDivElement>(null);
+    const parcourReverse = useMemo(() => [...monParcours].reverse(), []);
       
 //MONTAGE COMPOSANT
     useEffect(() => {
@@ -18,15 +18,15 @@ const AboutMe: React.FC = () => {
     }, []);
   
 //LARGUEUR ECRAN POUR STYLE
-    useEffect(() => {
-        const handleResize = () => {
-            setWindowWidth(window.innerWidth);
-        };
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+    // useEffect(() => {
+    //     const handleResize = () => {
+    //         setWindowWidth(window.innerWidth);
+    //     };
+    //     window.addEventListener('resize', handleResize);
+    //     return () => {
+    //         window.removeEventListener('resize', handleResize);
+    //     };
+    // }, []);
 
 //SCROLL PARCOURS  
     useEffect(() => {
@@ -35,27 +35,38 @@ const AboutMe: React.FC = () => {
         }     
     },[]);
 
-    const handleSkipForward = () => {
-        // console.log("click");
-        if (scrollContainerRef.current) {
-            if(elementWidthRef.current) {
-                // console.log(elementWidthRef.current?.getBoundingClientRect().width);
-                const elementWidth = elementWidthRef.current?.getBoundingClientRect().width;
-                scrollContainerRef.current.scrollLeft += elementWidth * 2 ;
-            }  
-        }
-    };
 
-    const handleSkipBack = () => {
-        // console.log("click");
-        if (scrollContainerRef.current) {
-            if(elementWidthRef.current) {
-                // console.log(elementWidthRef.current?.getBoundingClientRect().width);
-                const elementWidth = elementWidthRef.current?.getBoundingClientRect().width;
-                scrollContainerRef.current.scrollLeft -= elementWidth * 2 ;
-            }  
-        }
-    };
+    //EXPERIENCE VISIBLE A L'ECRAN
+    const [visibleExp, setVisibleExp] = useState<number[]>([]); // Définir le type de l'état comme un tableau de nombres
+    const refs = useRef<React.RefObject<HTMLDivElement>[]>(parcourReverse.map(() => React.createRef<HTMLDivElement>()));
+
+    // console.log(visibleExp);
+
+    useEffect(() => {
+        if(aboutMeVisible) {
+            const currentRefs = refs.current;
+            // console.log(currentRefs);
+            const observers = currentRefs.map((ref, index) => {
+                const observer = new IntersectionObserver(([entry]) => {
+                    if (entry.isIntersecting) {
+                        setVisibleExp((prev) => [...prev, index]);
+                    } else {
+                        setVisibleExp((prev) => prev.filter((i) => i !== index));
+                    }
+                }, { threshold: 0.5 });
+        
+                if (ref.current) {
+                    observer.observe(ref.current);
+                }  
+                // console.log("observer",observer)      
+                return observer;
+
+            });
+            return () => {
+                observers.forEach(observer => observer.disconnect());
+            };
+        }        
+    }, [aboutMeVisible]);   
 
 //POSTES
     const postes = (postes:string[]) => {
@@ -114,18 +125,19 @@ const competences = (competences: string[]) => {
         return allSoftSkills;
     };
 
+
     const parcours = () => {
-        const parcoursInverse = [...monParcours].reverse();
+        // const parcoursInverse = [...monParcours].reverse();
         const allParcours = [];
-        for (let i = 0; i < parcoursInverse.length; i++) {
-            const p = parcoursInverse[i];
+        for (let i = 0; i < parcourReverse.length; i++) {
+            const p = parcourReverse[i];
             const isTruncated = truncatedTexts[i];
             const fullText = p.description;
             const displayText = isTruncated ? fullText.substring(0, 100) : fullText; 
 
             allParcours.push(
-                <div ref={elementWidthRef} key={p.id} className={`pt-2 mb-3 ${p.description === "" ? "w-1/2":"w-full"} sm:w-1/2 md:w-1/3 shrink-0 lg:shrink`}>         
-                    {p.id === 1 &&
+                <div ref={refs.current[i]} key={p.id} className={`pt-2 mb-3 ${p.description === "" ? "w-1/2":"w-full"} sm:w-1/2 md:w-1/3 shrink-0 lg:shrink`}>         
+                    {/* {p.id === 1 &&
                         <div className={`h-0.5 mb-2 w-1/2 flex justify-end ${theme === 'light' ? 'bg-pink-300/70' : 'bg-pink-600/70'}`}> 
                             <div className={`size-3 rounded-full -mt-1 ${theme === 'light' ? 'bg-pink-300' : 'bg-pink-600'}`}></div> 
                         </div>}               
@@ -139,7 +151,7 @@ const competences = (competences: string[]) => {
                     {p.id !== 1 && p.id !== monParcours.length && 
                         <div className={`h-0.5 mb-2 flex justify-center ${theme === 'light' ? 'bg-pink-300/70' : 'bg-pink-600/70'}`}> 
                             <div className={`size-3 rounded-full -mt-1 ${theme === 'light' ? 'bg-pink-300' : 'bg-pink-600'}`}></div> 
-                        </div> }
+                        </div> } */}
                     <div  className=" text-center h-full p-1 mx-2" title="Période">
                         <div className="w-full whitespace-nowrap italic text-sm">
                             {p.date.debut === p.date.fin ? p.date.debut : `${p.date.debut} - ${p.date.fin}`}
@@ -162,14 +174,14 @@ const competences = (competences: string[]) => {
                             id="descriptionContainer"
                             title="Description"
                             onClick={() => toggleDescription(i)}
-                            className={`group text-center ${fullText.length > 100 ? (theme === 'dark' ? "hover:bg-pink-100/5 cursor-pointer" : "hover:bg-pink-950/5 cursor-pointer" ) : ""} rounded-lg py-1.5 my-0.5 `}
+                            className={`group text-center cursor-pointer ${fullText.length > 100 ? (theme === 'dark' ? "hover:bg-pink-100/5 cursor-pointer" : "hover:bg-pink-950/5 cursor-pointer" ) : ""} rounded-lg py-1.5 my-0.5 `}
                         >
                             <p id="description" className="text-center ">
                                 {displayText}
                                 {/* {isTruncated && fullText.length > 100 && <> < span className="group-hover:font-bold group-hover:animate-ping "> ... </span> <span className="text-sm text-gray-500">(cliquer pour lire la suite)</span> </> } */}
                                 {isTruncated && fullText.length > 100 && (
-                                    <span className="cursor-pointer">
-                                        <span className="group-hover:font-bold group-hover:text-pink-500">...</span>
+                                    <span className="">
+                                        <span className="font-bold animate-ping">...</span>
                                         <span className="inline-block right-0 -bottom-1 text-sm text-gray-500 group-hover:text-pink-500">(cliquer pour lire la suite)</span>
                                     </span>
                                 )}
@@ -205,6 +217,8 @@ const competences = (competences: string[]) => {
         return allParcours;
     };
 
+
+
     if (!mounted) return <BeatLoader color="#db2777"/>;
 
     return (
@@ -220,8 +234,26 @@ const competences = (competences: string[]) => {
                     <SkipForward />
                 </div>
             </div>}             */}
-            <div className={`w-full flex flex-nowrap overflow-x-scroll no-scrollbar`}>        
+
+{/* <div className={`h-0.5 mb-2 flex justify-center ${theme === 'light' ? 'bg-pink-300/70' : 'bg-pink-600/70'}`}> 
+                            <div className={`size-3 rounded-full -mt-1 ${theme === 'light' ? 'bg-pink-300' : 'bg-pink-600'}`}></div> 
+                        </div> } */}
+
+            <div className={`w-full flex flex-col items-center`}> 
+                <div className="w-full flex justify-center items-center mb-0.5 ">
+                {/* h-0.5 bg-pink-300 */}
+                    {parcourReverse.map((exp, i) => (
+                        <span
+                            key={exp.id}
+                            className={` m-1 rounded-full transition duration-500 ease-in-out ${visibleExp.includes(i) ? 'bg-pink-600 p-2' : 'bg-pink-200 p-1.5 '} `}
+                        ></span>
+                    ))} 
+                </div> 
+                <div className="w-1/4 h-0.5 border-t border-pink-600/40"></div>  
+                 <div className={`w-full flex flex-nowrap overflow-x-scroll no-scrollbar `}>   
+                   
                 {parcours()}
+                </div>
             </div> 
             {/* <span className="w-full flex justify-end pr-6 -mt-2">
                 <ChevronsRight />                 

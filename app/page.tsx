@@ -65,7 +65,7 @@ if (!mounted) return (<div className="w-screen h-screen flex justify-center item
       </div>
   
       <div ref={aboutMeRef} className={`w-full transition-opacity duration-2000 ${aboutMeVisible ? 'opacity-100' : 'opacity-0'}`}>
-        <AboutMe />
+        <AboutMe aboutMeVisible={aboutMeVisible}/>
       </div>
 
         <div ref={player1} className={`w-full flex justify-start pl-24 lg:pl-48  transition-opacity duration-2000 ${player1Visible ? 'opacity-100' : 'opacity-0'}`}>

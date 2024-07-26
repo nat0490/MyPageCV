@@ -175,8 +175,6 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
  
 
 //CHANGER LA GRANDE IMAGE AFFICHE
-    
-
     const realisations = () => {
         // const realisationsReverse = realisationsReverse.reverse();
         const allRealisations = [];           
@@ -230,7 +228,11 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
                         className={`group cursor-pointer text-center ${theme === 'dark' ? "hover:bg-white/5" : "hover:bg-black/5" } rounded-lg py-1.5 my-0.5`}
                     >
                         <p id="description" className="text-center ">
-                            {displayText}{isTruncated && fullText.length > 100 && <span className="group-hover:font-bold group-hover:animate-ping ">... </span>   }
+                            {displayText}{isTruncated && fullText.length > 100 && 
+                            <span>
+                                <span className="font-bold animate-ping "> ... </span>
+                                <span className="inline-block right-0 -bottom-1 text-sm text-gray-500 group-hover:text-pink-500">(cliquer pour lire la suite)</span> 
+                            </span>  }
                             
                         </p>
                     </div>
@@ -289,11 +291,11 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
     return (
         <section className="w-full">
             <h1 className="text-pink-600 text-small-caps text-center text-5xl mb-6 "> Réalisations </h1>
-            <div className="w-full flex justify-center">
+            <div className="w-full flex justify-center items-center mb-0.5">
                 {realisationsReverse.map((realisation, i) => (
                     <span
                         key={realisation.id}
-                        className={`m-1 p-2 rounded-full transition duration-500 ease-in-out ${visibleRealisations.includes(i) ? 'bg-pink-600' : 'bg-pink-200'}`}
+                        className={`m-0.5 rounded-full transition duration-500 ease-in-out ${visibleRealisations.includes(i) ? 'bg-pink-600 p-2' : 'bg-pink-200 p-1.5'}`}
                     ></span>
                 ))}
             </div>

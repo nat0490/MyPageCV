@@ -112,7 +112,7 @@ const monParcours: Item[] = [
             fin: "Avril 2023",}
         ,    
         type:"look",
-        description: "Découverte du métier de Développeur en entreprise pour confirmer mon choix de reconversion.",
+        description: "Découverte du métier de Développeur en entreprise.",
         softSkills:["Curiosité"],
         competences:[""],
         lieu:"Technolac, 73770",
