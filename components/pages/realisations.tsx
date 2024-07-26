@@ -289,8 +289,9 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
     if (!mounted) return <BeatLoader color="#db2777"/>;
 
     return (
-        <section className="w-full">
+        <section className="w-full ">
             <h1 className="text-pink-600 text-small-caps text-center text-5xl mb-6 "> Réalisations </h1>
+            <div className={`w-full flex flex-col items-center`}> 
             <div className="w-full flex justify-center items-center mb-0.5">
                 {realisationsReverse.map((realisation, i) => (
                     <span
@@ -298,6 +299,10 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
                         className={`m-0.5 rounded-full transition duration-500 ease-in-out ${visibleRealisations.includes(i) ? 'bg-pink-600 p-2' : 'bg-pink-200 p-1.5'}`}
                     ></span>
                 ))}
+
+                
+            </div>
+            <div className="w-1/4 h-0.5 border-t border-pink-600/40"></div>  
             </div>
             {/* <div className="mb-4 w-full"> */}
                 <div className={`w-full flex flex-nowrap overflow-x-auto ${realisationsReverse.length < 3 ? 'md:justify-center' : ""}  scrollbar  scrollbar-thumb-pink-600/50 ${theme ==="light" ?  "scrollbar-track-pink-100/50  " : " scrollbar-track-pink-950/50"}`}>
