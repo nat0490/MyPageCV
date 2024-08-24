@@ -23,9 +23,21 @@ const config: Config = {
           '0%': { opacity: "0" },
           '100%': { opacity: "1" },
         },
+        growToNormal: {
+          '0% ':{
+            transform: 'scale(0.1)', 
+            opacity: '0', 
+          },
+          '100%' : {
+            transform: 'scale(1)', 
+            opacity: '1', 
+          }
+        },
+        
       },
       animation: {
         fadeIn: 'fadeIn forwards',
+        growToNormal : 'growToNormal 3s cubic-bezier(0, 0, 0.2, 1) 1',
       },
     },
   },

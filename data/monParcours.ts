@@ -112,8 +112,8 @@ const monParcours: Item[] = [
             fin: "Avril 2023",}
         ,    
         type:"look",
-        description: "Découverte du métier de Développeur en entreprise.",
-        softSkills:["Curiosité"],
+        description: "Immersion dans le pôle Recherche et Développement.",
+        softSkills:[""],
         competences:[""],
         lieu:"Technolac, 73770",
         image: "string",

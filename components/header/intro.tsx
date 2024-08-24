@@ -21,7 +21,7 @@ const Intro: React.FC = () => {
 if (!mounted) return <BeatLoader color="#db2777"/>;
 
     return (
-        <section className="w-full md:w-9/12 px-2 mb-12 sm:mb-20 lg:mr-20 xl:mr-40 2xl:mr-80">
+        <section className="w-full md:w-9/12 px-2 mb-12 sm:mb-20 lg:mr-20 xl:mr-40 2xl:mr-60">
             <div className="text-end italic text-small-caps">
                 <FadeInText 
                     text={text}

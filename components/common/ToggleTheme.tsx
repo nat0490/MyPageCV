@@ -20,14 +20,14 @@ const ToggleTheme: React.FC = () => {
     if (!mounted) return null;
 
     return (
-        <div className="w-full flex justify-end pr-8 sm:pr-14 md:pr-12 mb-6  md:my-0 " title="Changer le thème">
-            {/* xl:pr-48 lg:pr-48 md:pr-16 pr-60 md:mb-0  */}
+        <div className="w-full flex  " title="Changer le thème">
+            {/* pr-8 sm:pr-14 md:pr-12 mb-6  md:my-0  */}
             <button 
                 onClick={handleTheme}
-                className={`relative border-3 w-16 h-8 rounded-full transition-bg-border duration-200 ease ${theme === "light" ? "bg-gray-50 border-gray-50" : "bg-black border-black"}`}
+                className={`relative border flex items-center w-14 h-6 rounded-full transition-bg-border duration-1000 ease ${theme === "light" ? "bg-pink-700/5 border-pink-700" : "bg-pink-700/10 border-pink-700/30 "}`}
                 >
-                <div className={`absolute flex justify-center items-center bg-pink-700 rounded-full w-8 h-8 transition-left duration-200 ease ${theme === "light" ? "left-0" : "right-0"} top-0`}>
-            { theme === "light" ?  <Moon color="white"/> : <Sun /> }
+                <div className={`absolute flex justify-center items-center bg-pink-700 rounded-full w-6 h-6 transition-left duration-1000 ease ${theme === "light" ? "left-0" : "right-0"} `}>
+            { theme === "light" ?  <Moon color="white" size={20}/> : <Sun color="white" /> }
                 </div>
             </button>
         </div>

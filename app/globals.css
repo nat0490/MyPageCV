@@ -4,9 +4,11 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-rgb: 240, 240, 240;
-  /* --background-start-rgb: 240, 240, 240;
-  --background-end-rgb: 255, 255, 255; */
+  /* --background-rgb: 240, 240, 240; */
+  /* --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 253, 242, 248; */
+  --background-start-rgb: 245,234,240;
+  --background-end-rgb: 255, 255, 255;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -23,9 +25,10 @@
 
 [data-theme="dark"]:root {
   --foreground-rgb: 255, 255, 255;
-  --background-rgb: 20, 20, 20;
-  /* --background-start-rgb: 20, 20, 20;
-  --background-end-rgb: 0, 0, 0; */
+  /* --background-rgb: 20, 20, 20; */
+  --background-start-rgb: 0, 0, 0;
+  /* --background-end-rgb: 30, 30,30; */
+  --background-end-rgb: 35, 4,16;
 }
 
 
@@ -40,17 +43,22 @@
     )
     rgb(var(--background-start-rgb));
 } */
+html, body {
+  height: 100%;
+  margin: 0;
+}
 
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-    /* cursor: url('/assets/arrow-with-scribble.png'), auto; */
-    /* cursor: pointer; */
+    to bottom,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
+  background-size: auto; /* Évite les répétitions du fond */
+  background-attachment: fixed; /* Permet au fond de NE PAS défiler avec le contenu */
+  min-height: 100vh; /* Assure que le body prend au moins toute la hauteur du viewport */
+  height: auto; /* Permet au body de s'ajuster à la hauteur du contenu */
 }
 
 @layer utilities {
@@ -207,6 +215,9 @@ body {
 .contactBox {
   background-color: rgba(253, 242, 248, 0.25);
 }
+
+
+
 
 
 }

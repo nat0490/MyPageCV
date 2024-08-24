@@ -223,7 +223,7 @@ const competences = (competences: string[]) => {
 
     return (
         <section className="w-full ">
-            <h1 className="text-pink-600 text-small-caps text-right text-5xl mb-4 mr-4 sm:mr-32 "> Mon parcours </h1>  
+            <h1 className="text-pink-600 text-small-caps text-right text-4xl mb-4 mr-4 sm:mr-32 "> Mon parcours </h1>  
              
             {/* {windowWidth < 1024 &&
             <div className="flex justify-center space-x-4">
@@ -240,16 +240,16 @@ const competences = (competences: string[]) => {
                         </div> } */}
 
             <div className={`w-full flex flex-col items-center`}> 
-                <div className="w-full flex justify-center items-center mb-0.5 ">
+                <div className="w-full flex justify-center items-center h-5">
                 {/* h-0.5 bg-pink-300 */}
                     {parcourReverse.map((exp, i) => (
                         <span
                             key={exp.id}
-                            className={` m-1 rounded-full transition duration-500 ease-in-out ${visibleExp.includes(i) ? 'bg-pink-600 p-2' : 'bg-pink-200 p-1.5 '} `}
+                            className={` m-0.5 rounded-full transition duration-1000 ease-in-out ${visibleExp.includes(i) ? 'bg-pink-600 p-1.5' : 'bg-pink-200 p-1 '} `}
                         ></span>
                     ))} 
                 </div> 
-                <div className="w-1/4 h-0.5 border-t border-pink-600/40"></div>  
+                <div className="w-1/12 h-0.5 border-t border-pink-600/30 mb-2"></div>  
                  <div className={`w-full flex flex-nowrap overflow-x-scroll no-scrollbar `}>   
                    
                 {parcours()}

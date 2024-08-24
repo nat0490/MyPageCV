@@ -120,7 +120,7 @@ const stylePlayer = windowWidth > 768
 
     return (
         <section className="w-full mb-28">
-            <h1 className="text-pink-600 text-small-caps text-right text-5xl mb-6 mr-8 sm:mr-40">Contact</h1>
+            <h1 className="text-pink-600 text-small-caps text-right text-4xl mb-6 mr-8 sm:mr-40">Contact</h1>
             <div className=" rounded-3xl contactBox mx-2 p-2">
                 {/* <div className="">  */}
                     <form ref={form} onSubmit={handleSubmit} className="flex justify-center items-between w-full">

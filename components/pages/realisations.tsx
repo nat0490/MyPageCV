@@ -50,12 +50,6 @@ const Realisations: React.FC<({ realisationsVisible: boolean })> = ({ realisatio
         setMounted(true);
     }, []);
 
-    // const handleNextImage = () => {
-    //     setCurrentIndex((prevIndex) =>
-    //         prevIndex.map((index, i) => (index + 1) % realisationsReverse[i].image.length)
-    //     );
-    // };
-
     const handleNextImage = useCallback(() => {
         setCurrentIndex((prevIndex) =>
             prevIndex.map((index, i) => (index + 1) % realisationsReverse[i].image.length)
@@ -123,22 +117,6 @@ const Realisations: React.FC<({ realisationsVisible: boolean })> = ({ realisatio
         return allTechs;
     }
 
-//LIENS
-    // const links = (link: string[]) => {
-    //     const allLinks = [];
-    //     for (let i = 0; i < link.length; i++) {
-    //         const l = link[i];
-    //         allLinks.push(                  
-    //             <a  key={`${i}`}
-    //                 href={l}
-    //                 className="text-small-caps font-bold text-center text-pink-400 hover:text-pink-600 hover:cursor-pointer text-sm"
-    //                 target="_blank" 
-    //                 rel="noopener noreferrer"
-    //             > {l} </a>                    
-    //         )
-    //     }
-    //     return allLinks;
-    // };
 
 //IMAGES
 const handleImage = (indexRealisation: number, indexImage: number) => {
@@ -237,10 +215,8 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
                         </p>
                     </div>
                     <div id="tech" title="Technologies utilisées" className={`border p-0.5 ml-2 rounded-lg ${theme === 'dark' ? " border-pink-100/10" : " border-pink-800/10" }`}>
-                    {/* <div id="tech" title="Technologies utilisées" className={`flex flex-col items-center border p-0.5 rounded-lg ${theme === 'dark' ? " border-pink-100/10" : " border-pink-800/10" }`}> */}
-                    {/* <Cog size={18} className="m-1 flex"/> */}
-                        <Cog size={20} className="-mt-2 -mb-1 -ml-2"/>
-                        <div className="flex flex-wrap text-small-caps justify-center pb-1">
+                        {/* <Cog size={20} className="-mt-2 -mb-1 -ml-2"/> */}
+                        <div className="flex flex-wrap text-small-caps justify-center p-1">
                             {allTech(realisation.tech)}
                         </div>
                     </div>  
@@ -252,7 +228,7 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
                             <div className="flex flex-col items-center justify-center " title="lien de la page">
                                 { realisation.link[0] !== "" && 
                                 <div className="flex flex-col w-full items-center  mb-1">
-                                    <p><span className="underline mr-2 ">App:</span> 
+                                    <p className="text-center"><span className="underline mr-2 ">App:</span> 
                                         <a    
                                             href={realisation.link.toString()}
                                             className="text-small-caps font-bold text-center text-pink-400 hover:text-pink-600 hover:cursor-pointer text-sm"
@@ -290,19 +266,19 @@ const handleImage = (indexRealisation: number, indexImage: number) => {
 
     return (
         <section className="w-full ">
-            <h1 className="text-pink-600 text-small-caps text-center text-5xl mb-6 "> Réalisations </h1>
+            <h1 className="text-pink-600 text-small-caps text-center text-4xl mb-6 "> Réalisations </h1>
             <div className={`w-full flex flex-col items-center`}> 
-            <div className="w-full flex justify-center items-center mb-0.5">
+            <div className="w-full flex justify-center items-center h-5">
                 {realisationsReverse.map((realisation, i) => (
                     <span
                         key={realisation.id}
-                        className={`m-0.5 rounded-full transition duration-500 ease-in-out ${visibleRealisations.includes(i) ? 'bg-pink-600 p-2' : 'bg-pink-200 p-1.5'}`}
+                        className={`m-0.5 rounded-full transition duration-1000 ease-in-out ${visibleRealisations.includes(i) ? 'bg-pink-600 p-1.5' : 'bg-pink-200 p-1'}`}
                     ></span>
                 ))}
 
                 
             </div>
-            <div className="w-1/4 h-0.5 border-t border-pink-600/40"></div>  
+            <div className="w-1/12 h-0.5 border-t border-pink-600/30 mb-2"></div>  
             </div>
             {/* <div className="mb-4 w-full"> */}
                 <div className={`w-full flex flex-nowrap overflow-x-auto ${realisationsReverse.length < 3 ? 'md:justify-center' : ""}  scrollbar  scrollbar-thumb-pink-600/50 ${theme ==="light" ?  "scrollbar-track-pink-100/50  " : " scrollbar-track-pink-950/50"}`}>

@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState }  from "react";
-import { Player, Controls } from '@lottiefiles/react-lottie-player';
+// import { Player, Controls } from '@lottiefiles/react-lottie-player';
 import { Github, Linkedin } from 'lucide-react';
 import { useTheme } from "next-themes";
 import {ToggleTheme} from "@/components/common";
@@ -62,7 +62,7 @@ useEffect(() => {
         const carres: JSX.Element[] = [];
         for (let i:number = 0; i < nbr ; i++) {
           carres.push(
-            <div key={`${line}-${i}`} id={`${line}-carre-${i}`} className="size-16 md:size-24 lg:size-32 random-animation-element group border-2 hover:border-4 border-pink-600 rotate-45  flex justify-center items-center animate-slideInFromLeft animate-trail">
+            <div key={`${line}-${i}`} id={`${line}-carre-${i}`} className="size-16 md:size-24 lg:size-28 xl:size-32 random-animation-element group border-2 hover:border-4 border-pink-600 rotate-45  flex justify-center items-center animate-slideInFromLeft animate-trail">
               <div className={`border md:border-2 border-pink-600  size-14 md:size-24 lg:size-28 relative flex justify-center items-center ${line === activeAnimationLine && i === activeAnimationPlace ? 'opacity-100 animate-appear01' : 'opacity-0'}`}>
                 <div className={`border md:border-2 border-pink-500 size-12 md:size-20 lg:size-24 relative flex justify-center items-center ${line === activeAnimationLine && i === activeAnimationPlace ? 'opacity-100 animate-appear02' : 'opacity-0'}`}>
                   <div className={`border md:border-2 border-pink-500 size-10 md:size-20 relative flex justify-center items-center ${line === activeAnimationLine && i === activeAnimationPlace ? 'opacity-100 animate-appear03' : 'opacity-0'}`}>
@@ -86,8 +86,8 @@ useEffect(() => {
       };
 
 //PLAYER SMILE
-    const stylePlayer = windowWidth > 640
-      ? { height: '250px', width: '250px' }
+    const stylePlayer = windowWidth > 780
+      ? { height: '200px', width: '200px' }
       : { height: '150px', width: '150px' };
 
 // NOM PRENOM
@@ -108,9 +108,10 @@ useEffect(() => {
     if (!mounted) return <BeatLoader color="#db2777"/>;
 
     return (
-      <div className="w-full mb-4"> 
-        <section className="flex flex-col md:flex-row md:justify-between md:items-center w-full xl:px-32 lg:px-24 md:px-12 px-4 pt-4 lg:pt-16 ">
-          <div className="flex mt-4 ml-2 ">
+      <div className="w-full"> 
+        <section className="flex flex-row justify-between items-start w-full pt-8 ">
+        {/* xl:px-32 lg:px-24 md:px-12 px-4   */}
+          <div className="flex xl:pl-28 lg:pl-10 pl-8  ">
             <div className="flex flex-col ">
               <div className="flex justify-center ">
                   {grosCarre(2, 1)}
@@ -123,55 +124,74 @@ useEffect(() => {
               </div>
             </div>
           </div>
+
+        
           
 
-          <div className=" flex flex-col-reverse -mt-40 sm:-mt-72 md:mt-0 md:flex-col justify-center mr-0 md:mr-20 "> 
-            
-            <div id="name"className="group sm:mr-6 sm:p-4">
-              <p className=" text-small-caps text-right  text-pink-600 text-5xl sm:text-7xl tracking-widest cursor-default ">
-                {animationName("Nathalie", "prenom", 0)}
-              </p>
-              <p className="text-small-caps text-right  text-pink-600/50 text-3xl sm:text-5xl tracking-widest cursor-default group-hover:text-pink-600/75 ">
-                {animationName("Sartor", "nom", 0.15)}
-              </p>
-            </div> 
+          <div className="flex flex-col items-end "> 
+          {/* className="-mt-48 md:-mt-6 lg:-mt-14 "  */}
 
-            <div id="contact" className="flex justify-end p-2 mr-2 sm:mr-10 ">
-              <a  
-                href="https://github.com/nat0490"
-                className="hover:cursor-pointer hover:bg-pink-600/40 animate-bounce bg-pink-600/5 rounded-full p-2 mr-1"
-                target="_blank" 
-                rel="noopener noreferrer"
-                title="lien Github"
-              > { theme === "light" ?  <Github color="black" className="mt-1.5 ml-1"/> : <Github color="white" className="mt-1.5 ml-1"/> }
-              </a>   
-
-              <a  
-                  href="https://www.linkedin.com/in/nathalie-sartor-5aa677189/ "
-                  className="hover:cursor-pointer hover:bg-pink-600/40 animate-bounce bg-pink-600/5 rounded-full p-2 mr-1"
-                  style={{ animationDelay: "0.5s" }}
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  title="lien Linkedin"
-              > { theme === "light" ?  <Linkedin color="black" className="mt-1.5 ml-1"/> : <Linkedin color="white" className="mt-1.5 ml-1"/> }
-                        
-              </a>         
+            <div className="mr-4 mb-6">
+            {/* mr-0 md:pr-10 lg:-mr-14  xl:-mr-24 */}
+              <ToggleTheme /> 
             </div>
 
-            <div >
+            <div className=" flex  flex-col justify-center mr-6 md:mr-20 mt-6 lg:mt-0">
+            {/* pt-20 */}
+              <div className="flex flex-col-reverse md:flex-col">
+              
+                <div id="name"className="group sm:mr-6 sm:px-2 lg:mt-14 mb-2">
+                  <p className=" text-small-caps text-right  text-pink-600 text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-widest cursor-default ">
+                    {animationName("Nathalie", "prenom", 0)}
+                  </p>
+                  <p className="text-small-caps text-right  text-pink-600/50 text-1xl sm:text-2xl md:text-3xl lg:text-4xl tracking-widest cursor-default group-hover:text-pink-600/75 ">
+                    {animationName("Sartor", "nom", 0.15)}
+                  </p>
+                </div> 
+
+                <div id="contact" className="flex justify-end px-2 py-1 mr-2 md:mr-10 ">
+                  <a  
+                    href="https://github.com/nat0490"
+                    className="hover:cursor-pointer hover:bg-pink-600/40 animate-bounce bg-pink-600/5 rounded-full p-2 mr-1"
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    title="lien Github"
+                  > { theme === "light" ?  <Github color="black" className="mt-1.5 ml-1"/> : <Github color="white" className="mt-1.5 ml-1"/> }
+                  </a>   
+
+                  <a  
+                      href="https://www.linkedin.com/in/nathalie-sartor-5aa677189/ "
+                      className="hover:cursor-pointer hover:bg-pink-600/40 animate-bounce bg-pink-600/5 rounded-full p-2 mr-1"
+                      style={{ animationDelay: "0.5s" }}
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      title="lien Linkedin"
+                  > { theme === "light" ?  <Linkedin color="black" className="mt-1.5 ml-1"/> : <Linkedin color="white" className="mt-1.5 ml-1"/> }
+                            
+                  </a>         
+                </div>
+
+              </div>
+
+            {/* <div >
             <ToggleTheme /> 
-            </div>
+            </div> */}
             
 
-            <div className="md:mr-52 md:-mt-20 flex justify-end md:justify-start " title="A little Smile :)">
+            {/* <div className="mr-10 sm:mr-24 md:mr-44 xl:mr-52 -mt-20 md:-mt-28 xl:-mt-20 p-0 flex justify-end md:justify-start " title="A little Smile :)">
               <Player
                 autoplay
                 loop       
                 src={require("@/assets/AnimationSmile.json")}
                 style={stylePlayer}
               ></Player>                     
-            </div>            
-          </div>          
+            </div>  */}
+
+            </div>
+
+
+          </div> 
+
         </section>
       </div>
     );

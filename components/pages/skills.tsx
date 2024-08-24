@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useState} from "react";
+import React, {useRef, useEffect, useState, useCallback} from "react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { BeatLoader} from 'react-spinners';
@@ -59,10 +59,35 @@ const Skills: React.FC = () => {
         }       
     },[mounted]);
 
-//DETECTION POSITION DE LA SOURIS POUR SCROLLER VERTICALEMENT
+
+
+//FONCTION D'ANIMATION DU DEFILEMENT
+const smoothScroll = useCallback((element: HTMLDivElement, target:number, duration:number) => {
+    const start = element.scrollLeft;
+    const distance = target - start;
+    let startTime: number | null = null;
+
+    const animateScroll = (currentTime:number) => {
+        if (!startTime) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1); // Calculate the progress of the animation
+        element.scrollLeft = start + distance * easeInOutQuad(progress);
+        if (timeElapsed < duration) {
+            requestAnimationFrame(animateScroll);
+        }
+    };
+
+    requestAnimationFrame(animateScroll);
+}, []);
+
+// Fonction d'accélération/décélération pour l'animation
+const easeInOutQuad = (t:number) => {
+    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+};
+
+//DETECTION POSITION DE LA SOURIS POUR SCROLLER HORIZONTALEMENT
     useEffect(() => {
-        if (mounted) {
-            
+        if (mounted) {            
             const handleMouseMove = (event: any) => {
                 // console.log("in the hook");         
                 const scrollElement = scrollContainerRef.current;
@@ -71,24 +96,27 @@ const Skills: React.FC = () => {
                 // console.log(clientWidth);         
                 const scrollToLeft = () => {    
                     if (scrollElement) {
-                        scrollElement.scrollTo({ left: 0, behavior: 'smooth' });
+                        // scrollElement.scrollTo({ left: 0, behavior: 'smooth' });
+                        smoothScroll(scrollElement, 0, 500);
                     }
                 };        
                 const scrollToMiddle = () => {   
                     if (scrollElement) {
                         const scrollWidth = scrollElement.scrollWidth - scrollElement.clientWidth;
-                        scrollElement.scrollTo({ left: scrollWidth/2, behavior: 'smooth' });
+                        smoothScroll(scrollElement, scrollWidth / 2, 500);
+                        // scrollElement.scrollTo({ left: scrollWidth/2, behavior: 'smooth' });
                     }
                 };        
                 const scrollToRight = () => {   
                     if (scrollElement) {
                         const scrollWidth = scrollElement.scrollWidth - scrollElement.clientWidth;
-                        scrollElement.scrollTo({ left: scrollWidth, behavior: 'smooth' });
+                        smoothScroll(scrollElement, scrollWidth, 500);
+                        // scrollElement.scrollTo({ left: scrollWidth, behavior: 'smooth' });
                     }
                 };
                 const containerRect = scrollElement.getBoundingClientRect();
                 const mouseX = event.clientX - containerRect.left;
-                if (mouseX >= (clientWidth*0.8)){
+                if (mouseX >= (clientWidth*0.7)){
                     if (scrollPosition === 'start') {
                         scrollToMiddle();
                     } else if(scrollPosition === 'middle') {
@@ -111,40 +139,44 @@ const Skills: React.FC = () => {
             }
 
         }        
-      }, [scrollPosition, mounted]); 
+      }, [scrollPosition, mounted,smoothScroll]); 
  
 //ACTION LORS DES CLICKS SUR ROND DE NAVIATION SUR LA SCROLL VIEW
     const scrollToLeft = () => {
         const scrollElement = scrollContainerRef.current;
         if (scrollElement) {
-            scrollElement.scrollTo({ left: 0, behavior: 'smooth' });
+            // scrollElement.scrollTo({ left: 0, behavior: 'smooth' });
+            smoothScroll(scrollElement, 0, 1000);
         }
     };
     const scrollToMiddle = () => {
         const scrollElement = scrollContainerRef.current;
         if (scrollElement) {
             const scrollWidth = scrollElement.scrollWidth - scrollElement.clientWidth;
-            scrollElement.scrollTo({ left: scrollWidth / 2, behavior: 'smooth' });
+            smoothScroll(scrollElement, scrollWidth / 2, 1000);
+            // scrollElement.scrollTo({ left: scrollWidth / 2, behavior: 'smooth' });
         }
     };
     const scrollToRight = () => {
         const scrollElement = scrollContainerRef.current;
         if (scrollElement) {
             const scrollWidth = scrollElement.scrollWidth - scrollElement.clientWidth;
-            scrollElement.scrollTo({ left: scrollWidth, behavior: 'smooth' });
+            smoothScroll(scrollElement, scrollWidth, 1000);
+            // scrollElement.scrollTo({ left: scrollWidth, behavior: 'smooth' });
         }
     };  
+
 
     const skills = () => {
         const mySkills: JSX.Element[] = [];
         for(let i:number = 0; i<allSkills.length; i++) {
             const skill = allSkills[i];
             mySkills.push(
-                <div key={`${i}`} className="flex-none flex flex-col items-center justify-center w-24 h-32 md:size-48">            
+                <div key={`${i}`} className="flex-none flex flex-col items-center justify-center w-24 h-32 md:size-48 cursor-default">            
                     <Image 
                         src={skill.src}
                         alt={skill.name}
-                        className={`size-14 md:size-28 hover:size-40 md:hover:size-18 mb-4 ${theme === 'dark' &&  (skill.name === 'Git' || skill.name === 'GitHub' || skill.name === 'Expo' || skill.name === 'TypeScript' || skill.name === 'Express JS')? 'invert' : ''}`}
+                        className={`hover:cursor-default size-14 md:size-28 hover:size-32 md:hover:size-18 mb-4 ${theme === 'dark' &&  (skill.name === 'Git' || skill.name === 'Expo' || skill.name === 'TypeScript' || skill.name === 'Express JS')? 'invert' : ''}`}
                         // (skill.name === 'Git' || skill.name === 'GitHub' || skill.name === 'Expo' || skill.name === 'TypeScript' || skill.name === 'Express JS')
                     />
                     <p className="text-small-caps text-center">{skill.name}</p>                   
@@ -158,26 +190,34 @@ const Skills: React.FC = () => {
 
     return (
         <section className="w-full">
-            <h1 className="text-pink-600 text-small-caps text-5xl mb-6 ml-10 sm:ml-40"> Skills </h1>
+            <h1 className="text-pink-600 text-small-caps text-4xl mb-6 ml-10 sm:ml-40"> Skills </h1>
             <div className=" h-98 mb-4 flex items-center ">
                 <div className="flex flex-col w-full">
-                    <div id="scrollSkills" ref={scrollContainerRef} className="flex items-center overflow-x-scroll no-scrollbar">
-                        {skills()}
-                    </div>
-                    <div className="flex justify-center w-full"> 
+                    <div className="flex flex-col w-full items-center">
+                    <div className="flex justify-center items-center w-full h-5"> 
                         <div 
                             onClick={scrollToLeft} 
-                            className={`m-1 p-2 hover:cursor-pointer ${scrollPosition === 'start' ? 'bg-pink-600' : 'bg-pink-200'} rounded-full`}>
+                            className={`m-0.5 hover:cursor-pointer transition duration-1000 ease-in-out  ${scrollPosition === 'start' ? 'bg-pink-600 p-1.5' : 'bg-pink-200 p-1'} rounded-full`}>
                         </div>
                         <div 
                             onClick={scrollToMiddle}
-                            className={`m-1 p-2 hover:cursor-pointer ${scrollPosition === 'middle' ? 'bg-pink-600' : 'bg-pink-200'} rounded-full`}>
+                            className={`m-0.5 hover:cursor-pointer transition duration-1000 ease-in-out  ${scrollPosition === 'middle' ? 'bg-pink-600 p-1.5' : 'bg-pink-200 p-1'} rounded-full`}>
                         </div>
                         <div 
                             onClick={scrollToRight}
-                            className={`m-1 p-2 hover:cursor-pointer ${scrollPosition === 'end' ? 'bg-pink-600' : 'bg-pink-200'} rounded-full`}>
+                            className={`m-0.5 hover:cursor-pointer transition duration-1000 ease-in-out  ${scrollPosition === 'end' ? 'bg-pink-600 p-1.5' : 'bg-pink-200 p-1'} rounded-full`}>
                         </div>
-                    </div>                      
+                    </div>  
+
+                    <div className="w-1/12 h-0.5 border-t border-pink-600/30"></div>   
+
+                    </div>   
+
+                    
+                    <div id="scrollSkills" ref={scrollContainerRef} className="flex items-center overflow-x-scroll no-scrollbar">
+                        {skills()}
+                    </div>
+                                   
                 </div>                  
             </div>
         </section>
